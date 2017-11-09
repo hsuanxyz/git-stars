@@ -1,3 +1,31 @@
-<p>
-  toolbar works!
-</p>
+<div class="content">
+  <div class="left-content">
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="brand-name">
+      Git Stars
+    </div>
+  </div>
+  <div class="centered-content">
+    <div class="search-wrap">
+      <button mat-icon-button class="search-btn">
+        <mat-icon>search</mat-icon>
+      </button>
+      <div class="input-wrap">
+        <label for="search"></label>
+        <input placeholder="搜索" autocomplete="off" id="search" type="text">
+      </div>
+      <button mat-icon-button class="clear-btn">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="right-content">
+    <button mat-icon-button class="refresh-btn">
+      <mat-icon>refresh</mat-icon>
+    </button>
+    <img class="avatar" src="https://avatars2.githubusercontent.com/u/22736418?s=40&v=4">
+  </div>
+</div>

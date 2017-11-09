@@ -11,6 +11,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FolderNodeComponent } from './folder-node/folder-node.component';
 import { DndChipComponent } from './dnd-chip/dnd-chip.component';
 
+import { MatIconModule, MatButtonModule } from '@angular/material';
+
+const  MAT_MODULES = [MatIconModule, MatButtonModule];
 
 @NgModule({
   declarations: [
@@ -24,9 +27,11 @@ import { DndChipComponent } from './dnd-chip/dnd-chip.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ...MAT_MODULES,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

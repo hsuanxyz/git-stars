@@ -1,0 +1,79 @@
+:host {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+
+  .content {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: 8px;
+    height: 48px;
+    background-color: #212121;
+    color: #fafafa;
+
+    .left-content, .centered-content, .right-content {
+      display: flex;
+      flex: 1 1 0;
+    }
+
+    .left-content {
+      margin-left: 16px;
+
+      .brand-name {
+        line-height: 41px;
+        font-size: 22px;
+        padding-left: 16px;
+      }
+    }
+
+    .centered-content {
+      flex: 1 1 auto;
+      button {
+        margin: 3px 4px;
+      }
+      .search-wrap {
+        width: 100%;
+        display: flex;
+        background: rgba(255,255,255,0.16);
+        border-radius: 4px;
+
+        .input-wrap {
+          width: 100%;
+          input {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            border: none;
+            font-variant-ligatures: none;
+            height: 46px;
+            outline: none;
+            padding: 11px 16px 11px 16px;
+            width: 100%;
+            background: transparent;
+            box-sizing: border-box;
+          }
+        }
+
+      }
+    }
+
+    .right-content {
+      text-align: end;
+      margin-right: 16px;
+      display: flex;
+      justify-content: flex-end;
+      .refresh-btn {
+        border-right: 8px;
+      }
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+        padding: 4px;
+        display: block;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
