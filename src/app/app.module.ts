@@ -13,6 +13,8 @@ import { DndChipComponent } from './dnd-chip/dnd-chip.component';
 
 import { MatIconModule, MatButtonModule } from '@angular/material';
 
+import { TreeModule } from 'angular-tree-component';
+
 const  MAT_MODULES = [MatIconModule, MatButtonModule];
 
 @NgModule({
@@ -29,6 +31,7 @@ const  MAT_MODULES = [MatIconModule, MatButtonModule];
     BrowserAnimationsModule,
     AppRoutingModule,
     ...MAT_MODULES,
+    TreeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
