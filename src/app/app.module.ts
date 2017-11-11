@@ -11,11 +11,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FolderNodeComponent } from './folder-node/folder-node.component';
 import { DndChipComponent } from './dnd-chip/dnd-chip.component';
 
-import { MatIconModule, MatButtonModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatCardModule } from '@angular/material';
 
 import { TreeModule } from 'angular-tree-component';
+import { StarsItemComponent } from './stars-item/stars-item.component';
 
-const  MAT_MODULES = [MatIconModule, MatButtonModule];
+const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ const  MAT_MODULES = [MatIconModule, MatButtonModule];
     StarsListComponent,
     SidebarComponent,
     FolderNodeComponent,
-    DndChipComponent
+    DndChipComponent,
+    StarsItemComponent
   ],
   imports: [
     BrowserModule,

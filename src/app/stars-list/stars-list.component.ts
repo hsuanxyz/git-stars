@@ -4,7 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   selector: 'gs-stars-list',
   templateUrl: './stars-list.component.html',
   styleUrls: ['./stars-list.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class StarsListComponent implements OnInit {
 
