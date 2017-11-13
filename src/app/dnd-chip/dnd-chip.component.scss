@@ -1,0 +1,49 @@
+:host {
+  pointer-events: none;
+  .chip-wrap {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 172px;
+    height: 40px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 4px 10px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 20px;
+    padding: 0 8px;
+    background-color: #333;
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    .ico-wrap {
+      height: 24px;
+      margin: 2px;
+      width: 24px;
+      background-color: white;
+      border-radius: 24px;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      .ico {
+        height: 16px;
+        width: 16px;
+        border-radius: 16px;
+        background-repeat: no-repeat;
+        background-image: url(../../assets/languages-icons/javascript.svg);
+      }
+    }
+
+    .repos-title {
+      color: white;
+      flex: 1;
+      font-weight: 500;
+      overflow: hidden;
+      text-decoration: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-left: 12px;
+      margin-right: 8px;
+    }
+  }
+}
