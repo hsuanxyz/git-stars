@@ -15,14 +15,14 @@
   }
 
   div.ico {
-    background-image: url(../../assets/github-logo.png);
+    background-image: url(../../../assets/github-logo.png);
     background-size: contain;
     height: 20px;
     min-width: 20px;
     width: 20px;
 
     &.languages-ico {
-      background-image: url(../../assets/languages-icons/javascript.svg);
+      background-image: url(../../../assets/languages-icons/javascript.svg);
       background-size: 100%;
     }
 
@@ -32,7 +32,6 @@
   }
 
   div.repos-title {
-    flex: 1;
     margin-left: 20px;
   }
 
