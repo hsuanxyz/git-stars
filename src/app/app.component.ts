@@ -9,6 +9,10 @@ import { GithubService } from './services/github.service';
 export class AppComponent {
 
   constructor(private github: GithubService) {
-    this.github.user('hsuanxyz');
+    this.github.gists({
+      name: 'hsuanxyz',
+      perPage: 1,
+      page: 1
+    });
   }
 }
