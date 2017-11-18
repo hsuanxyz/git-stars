@@ -33,7 +33,7 @@ export class StarsItemComponent implements OnInit {
   }
 
   get ownerAvatar(): string {
-    return `url(${this.star.owner.avatar_url}&s=40)`;
+    return `${this.star.owner.avatar_url}&s=40`;
   }
 
   constructor() { }

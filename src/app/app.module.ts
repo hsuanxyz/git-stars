@@ -18,6 +18,7 @@ import { TreeModule } from 'angular-tree-component';
 import { StarsItemComponent } from './components/stars-item/stars-item.component';
 import { GithubService } from './services/github/github.service';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
 
@@ -35,6 +36,7 @@ const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    LazyLoadImageModule,
     AppRoutingModule,
     ...MAT_MODULES,
     TreeModule,

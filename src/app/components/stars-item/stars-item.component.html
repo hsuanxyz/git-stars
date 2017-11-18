@@ -1,6 +1,7 @@
 <div class="ico languages-ico"></div>
 <div class="ico avatar-ico"
-     [style.background-image]="ownerAvatar">
+     [lazyLoad]="ownerAvatar"
+     [offset]="128">
 </div>
 <div class="repos-title">
   <a [href]="repoUrl">{{title}}</a>
