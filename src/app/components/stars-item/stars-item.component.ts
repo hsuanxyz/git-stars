@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { GithubStar } from '../../models/github/github-star';
 
 @Component({
   selector: 'gs-stars-item',
@@ -7,6 +8,33 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.Emulated
 })
 export class StarsItemComponent implements OnInit {
+
+  @Input() star: GithubStar;
+  @Output() descriptionChange: EventEmitter<any> = new EventEmitter();
+
+  get title(): string {
+    return this.star.name;
+  }
+
+  get language(): string {
+    return this.star.language;
+  }
+
+  get description(): string {
+    return this.star.description;
+  }
+
+  get homepage(): string {
+    return this.star.homepage;
+  }
+
+  get repoUrl(): string {
+    return this.star.html_url;
+  }
+
+  get ownerAvatar(): string {
+    return `url(${this.star.owner.avatar_url}&s=40)`;
+  }
 
   constructor() { }
 

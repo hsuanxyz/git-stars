@@ -1,7 +1,14 @@
 <div class="ico languages-ico"></div>
-<div class="ico git-ico"></div>
-<div class="repos-title">angular2-img-cropper</div>
-<div class="repos-description">A simple yet powerful tree component for Angular (>2) - https://angular2-tree.readme.io/docs</div>
+<div class="ico avatar-ico"
+     [style.background-image]="ownerAvatar">
+</div>
+<div class="repos-title">
+  <a [href]="repoUrl">{{title}}</a>
+</div>
+<div class="repos-description" [attr.title]="description">
+  {{description}}
+  <a *ngIf="homepage" [href]="homepage">{{homepage}}</a>
+</div>
 <button mat-icon-button class="more-btn">
   <mat-icon>more_vert</mat-icon>
 </button>

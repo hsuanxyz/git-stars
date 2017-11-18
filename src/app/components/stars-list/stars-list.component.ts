@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { GithubStar } from '../../models/github/github-star';
 
 @Component({
   selector: 'gs-stars-list',
@@ -7,6 +8,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.Emulated
 })
 export class StarsListComponent implements OnInit {
+
+  @Input() stars: GithubStar[];
 
   constructor() { }
 

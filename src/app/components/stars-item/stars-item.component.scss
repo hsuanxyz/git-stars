@@ -26,13 +26,18 @@
       background-size: 100%;
     }
 
-    &.git-ico {
+    &.avatar-ico {
       margin-left: 20px;
     }
   }
 
   div.repos-title {
     margin-left: 20px;
+    cursor: pointer;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
   }
 
   div.repos-description {
@@ -43,6 +48,10 @@
     font-size: .8em;
     margin-top: .2em;
     color: #757575;
+
+    a {
+      color: inherit;
+    }
   }
 
   button.more-btn {
