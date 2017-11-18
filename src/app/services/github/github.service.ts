@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import * as parse from 'parse-link-header';
+
+import { GithubUser } from '../../models/github/github-user';
+import { GithubStar } from '../../models/github/github-star';
+import { GithubGist } from '../../models/github/github-gist';
+
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+
 
 export class PaginationParams {
   username: string;
@@ -18,35 +26,35 @@ export class GithubService {
 
   /**
    * @param {string} username
-   * @returns {Observable<Object>}
+   * @returns {Observable<GithubUser>}
    */
-  user(username: string) {
-    return this.http.get(`github:users/${username}`);
+  user(username: string): Observable<GithubUser> {
+    return this.http.get<GithubUser>(`github:users/${username}`);
   }
 
   /**
    * @param {PaginationParams} params
-   * @returns {Observable<Object>}
+   * @returns {Observable<GithubStar[]>}
    */
-  stars(params: PaginationParams) {
+  stars(params: PaginationParams): Observable<GithubStar[]> {
     const {username, perPage, page} = params;
-    return this.http.get(`github:users/${username}/starred?per_page=${perPage}&page=${page}`);
+    return this.http.get<GithubStar[]>(`github:users/${username}/starred?per_page=${perPage}&page=${page}`);
   }
 
   /**
    * @param {PaginationParams} params
-   * @returns {Observable<Object>}
+   * @returns {Observable<GithubGist[]>}
    */
-  gists(params: PaginationParams) {
+  gists(params: PaginationParams): Observable<GithubGist[]> {
     const {username, perPage, page} = params;
-    return this.http.get(`github:users/${username}/gists?per_page=${perPage}&page=${page}`);
+    return this.http.get<GithubGist[]>(`github:users/${username}/gists?per_page=${perPage}&page=${page}`);
   }
 
   /**
    * @param {string} username - Github username
    * @returns {Observable<number>} starred count
    */
-  getStarredCount(username: string) {
+  getStarredCount(username: string): Observable<number> {
     return this.http.get(`github:users/${username}/starred?per_page=1&page=1`, {observe: 'response'})
     .map(res => {
       if (res.headers.has('link')) {

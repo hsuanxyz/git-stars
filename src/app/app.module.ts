@@ -16,7 +16,7 @@ import { MatIconModule, MatButtonModule, MatCardModule } from '@angular/material
 
 import { TreeModule } from 'angular-tree-component';
 import { StarsItemComponent } from './components/stars-item/stars-item.component';
-import { GithubService } from './services/github.service';
+import { GithubService } from './services/github/github.service';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 
 const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
