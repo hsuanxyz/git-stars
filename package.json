@@ -29,6 +29,7 @@
     "@ngrx/store-devtools": "^4.1.1",
     "angular-tree-component": "^5.2.1",
     "core-js": "^2.4.1",
+    "parse-link-header": "^1.0.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
