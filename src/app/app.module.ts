@@ -19,6 +19,8 @@ import { StarsItemComponent } from './components/stars-item/stars-item.component
 import { GithubService } from './services/github/github.service';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { MapLanguageIcoPipe } from './pipes/map-language-ico.pipe';
+import { LanguageIcoComponent } from './components/language-ico/language-ico.component';
 
 const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
 
@@ -30,7 +32,9 @@ const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
     SidebarComponent,
     FolderNodeComponent,
     DndChipComponent,
-    StarsItemComponent
+    StarsItemComponent,
+    MapLanguageIcoPipe,
+    LanguageIcoComponent
   ],
   imports: [
     BrowserModule,
