@@ -9,6 +9,18 @@ import { GithubGist } from '../../models/github/github-gist';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/scan';
+import 'rxjs/add/operator/reduce';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/mergeScan';
+import 'rxjs/add/operator/concatAll';
+import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/reduce';
+import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/observable/of';
 
 
 export class PaginationParams {
@@ -36,9 +48,29 @@ export class GithubService {
    * @param {PaginationParams} params
    * @returns {Observable<GithubStar[]>}
    */
-  stars(params: PaginationParams): Observable<GithubStar[]> {
+  _stars(params: PaginationParams): Observable<GithubStar[]> {
     const {username, perPage, page} = params;
     return this.http.get<GithubStar[]>(`github:users/${username}/starred?per_page=${perPage}&page=${page}`);
+  }
+
+  /**
+   * @param {string} username
+   * @returns {Observable<GithubStar[]>}
+   */
+  stars(username: string) {
+    return this.getStarredCount(username)
+    .mergeMap((count: number) => {
+      const paging: Observable<GithubStar[]>[] = [];
+      for (let i = 0; i < Math.ceil(count / 100); i++) {
+        paging.push(this._stars({ username, page: i, perPage: 100}));
+      }
+      return Observable.from(paging);
+    })
+    .concatAll()
+    .reduce((totalStars: GithubStar[], stars: GithubStar[]): GithubStar[] => [...totalStars, ...stars]);
+    // .mergeMap((count: number) => Observable.range(1, Math.ceil(count / 100)))
+    // .mergeMap((counter: number) => this._stars({ username, page: counter, perPage: 100}))
+    // .reduce((totalStars: GithubStar[], stars: GithubStar[]): GithubStar[] => [...totalStars, ...stars]);
   }
 
   /**
@@ -64,7 +96,7 @@ export class GithubService {
       } else {
         throw new Error('not find count');
       }
-    });
-
+    })
+    .retry(3);
   }
 }
