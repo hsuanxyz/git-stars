@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <gs-toolbar></gs-toolbar>
 <gs-sidebar></gs-sidebar>
-<gs-stars-list [stars]="stars"></gs-stars-list>
+<gs-stars-list [stars]="stars | async"></gs-stars-list>
 <gs-dnd-chip></gs-dnd-chip>
 <router-outlet></router-outlet>

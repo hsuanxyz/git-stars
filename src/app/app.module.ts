@@ -5,6 +5,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { StarsListComponent } from './components/stars-list/stars-list.component';
@@ -21,6 +24,8 @@ import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MapLanguageIcoPipe } from './pipes/map-language-ico.pipe';
 import { LanguageIcoComponent } from './components/language-ico/language-ico.component';
+
+import { githubStarsReducer } from './reducers/github-stars.reducer';
 
 const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
 
@@ -44,6 +49,10 @@ const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
     AppRoutingModule,
     ...MAT_MODULES,
     TreeModule,
+    StoreModule.forRoot({
+      stars: githubStarsReducer
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 10 }),
   ],
   providers: [
     {
