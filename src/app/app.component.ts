@@ -68,4 +68,10 @@ export class AppComponent {
     });
   }
 
+  onRefresh($event) {
+    if ($event && $event.toLowerCase() === this.username.toLowerCase()) {
+      this.getStars();
+    }
+  }
+
 }

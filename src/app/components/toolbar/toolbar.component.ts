@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, ViewEncapsulation } from '@angular/core';
 import { GithubUser } from '../../models/github/github-user';
 
 @Component({
@@ -10,6 +10,7 @@ import { GithubUser } from '../../models/github/github-user';
 export class ToolbarComponent implements OnInit {
 
   @Input() user: GithubUser;
+  @Output() refresh: EventEmitter<string> = new EventEmitter();
 
   get userAvatar() {
 
@@ -17,7 +18,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   get username() {
-    return this.user.name;
+    return this.user.login;
   }
 
   constructor() { }
@@ -25,4 +26,7 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  onRefresh() {
+    this.refresh.emit(this.username);
+  }
 }
