@@ -16,7 +16,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FolderNodeComponent } from './components/folder-node/folder-node.component';
 import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 
-import { MatIconModule, MatButtonModule, MatCardModule, MatDialogModule, MatInputModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatMenuModule } from '@angular/material';
 
 import { TreeModule } from 'angular-tree-component';
 import { StarsItemComponent } from './components/stars-item/stars-item.component';
@@ -30,7 +30,7 @@ import { BindUserDialogComponent } from './components/bind-user-dialog/bind-user
 import { githubStarsReducer } from './reducers/github-stars.reducer';
 import { githubUserReducer } from './reducers/github-user.reducer';
 
-const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule, MatDialogModule, MatInputModule];
+const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatMenuModule];
 
 @NgModule({
   declarations: [

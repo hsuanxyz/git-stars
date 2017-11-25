@@ -26,6 +26,21 @@
     <button mat-icon-button class="refresh-btn" title="刷新" (click)="onRefresh()">
       <mat-icon>refresh</mat-icon>
     </button>
-    <img class="avatar" [src]="userAvatar">
+    <img [matMenuTriggerFor]="userMenu" class="avatar" [src]="userAvatar">
+    <mat-menu class="user-menu" #userMenu="matMenu">
+      <span mat-menu-item>
+        <mat-icon>
+          account_circle
+        </mat-icon>
+        <span>{{username || '请绑定用户'}}</span>
+      </span>
+      <button mat-menu-item (click)="onReplace()">
+        <mat-icon>
+          exit_to_app
+        </mat-icon>
+        <span>{{username ? '切换用户' : '绑定用户'}}</span>
+      </button>
+    </mat-menu>
   </div>
+
 </div>

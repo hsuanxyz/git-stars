@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GithubService } from './services/github/github.service';
 import { GithubStar } from './models/github/github-star';
 import { Store } from '@ngrx/store';
@@ -19,7 +19,7 @@ interface AppState {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   stars: Observable<GithubStar[]>;
   user: Observable<GithubUser>;
@@ -31,10 +31,11 @@ export class AppComponent {
     public dialog: MatDialog) {
     this.stars = this.store.select('stars');
     this.user = this.store.select('user');
+  }
 
+  ngOnInit() {
     this.getUser();
     this.getStars();
-    this.openBindUserDialog();
   }
 
   getStars() {
