@@ -25,9 +25,10 @@ import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MapLanguageIcoPipe } from './pipes/map-language-ico.pipe';
 import { LanguageIcoComponent } from './components/language-ico/language-ico.component';
+import { BindUserDialogComponent } from './components/bind-user-dialog/bind-user-dialog.component';
 
 import { githubStarsReducer } from './reducers/github-stars.reducer';
-import { BindUserDialogComponent } from './components/bind-user-dialog/bind-user-dialog.component';
+import { githubUserReducer } from './reducers/github-user.reducer';
 
 const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule, MatDialogModule, MatInputModule];
 
@@ -57,7 +58,8 @@ const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule, MatDialogMo
     ...MAT_MODULES,
     TreeModule,
     StoreModule.forRoot({
-      stars: githubStarsReducer
+      stars: githubStarsReducer,
+      user: githubUserReducer
     }),
     StoreDevtoolsModule.instrument({ maxAge: 10 }),
   ],
