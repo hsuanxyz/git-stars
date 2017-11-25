@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -15,7 +16,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FolderNodeComponent } from './components/folder-node/folder-node.component';
 import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 
-import { MatIconModule, MatButtonModule, MatCardModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatCardModule, MatDialogModule, MatInputModule } from '@angular/material';
 
 import { TreeModule } from 'angular-tree-component';
 import { StarsItemComponent } from './components/stars-item/stars-item.component';
@@ -26,8 +27,9 @@ import { MapLanguageIcoPipe } from './pipes/map-language-ico.pipe';
 import { LanguageIcoComponent } from './components/language-ico/language-ico.component';
 
 import { githubStarsReducer } from './reducers/github-stars.reducer';
+import { BindUserDialogComponent } from './components/bind-user-dialog/bind-user-dialog.component';
 
-const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
+const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule, MatDialogModule, MatInputModule];
 
 @NgModule({
   declarations: [
@@ -39,11 +41,16 @@ const  MAT_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
     DndChipComponent,
     StarsItemComponent,
     MapLanguageIcoPipe,
-    LanguageIcoComponent
+    LanguageIcoComponent,
+    BindUserDialogComponent
+  ],
+  entryComponents: [
+    BindUserDialogComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     BrowserAnimationsModule,
     LazyLoadImageModule,
     AppRoutingModule,
