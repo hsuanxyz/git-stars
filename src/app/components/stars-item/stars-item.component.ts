@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component, EventEmitter, HostBinding, HostListener, Input, OnInit, Output,
+  ViewEncapsulation
+} from '@angular/core';
 import { GithubStar } from '../../models/github/github-star';
 
 @Component({
@@ -11,6 +14,7 @@ export class StarsItemComponent implements OnInit {
 
   @Input() star: GithubStar;
   @Output() descriptionChange: EventEmitter<any> = new EventEmitter();
+  @Output() onDragStart: EventEmitter<any> = new EventEmitter();
 
   get title(): string {
     return this.star.name;
@@ -34,6 +38,17 @@ export class StarsItemComponent implements OnInit {
 
   get ownerAvatar(): string {
     return `${this.star.owner.avatar_url}&s=40`;
+  }
+
+  @HostBinding('attr.draggable') draggable = true;
+
+  @HostListener('dragstart', ['$event'])
+  _onDragStart($event: any) {
+    $event.dataTransfer.setData('id', this.star.id);
+    this.onDragStart.emit({
+      ref: $event,
+      star: this.star
+    });
   }
 
   constructor() { }

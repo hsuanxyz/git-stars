@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GithubService } from './services/github/github.service';
 import { GithubStar } from './models/github/github-star';
 import { Store } from '@ngrx/store';
@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   stars: Observable<GithubStar[]>;
   user: Observable<GithubUser>;
   username = 'hsuanxyz';
+  @ViewChild('dnd') dndRef: ElementRef;
 
   constructor(
     private github: GithubService,
@@ -73,6 +74,10 @@ export class AppComponent implements OnInit {
     if ($event && $event.toLowerCase() === this.username.toLowerCase()) {
       this.getStars();
     }
+  }
+
+  onDragStart($event: any) {
+    console.log($event);
   }
 
 }

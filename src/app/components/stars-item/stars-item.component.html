@@ -4,11 +4,11 @@
      [offset]="128">
 </div>
 <div class="repos-title">
-  <a [href]="repoUrl">{{title}}</a>
+  <a draggable="false" [href]="repoUrl">{{title}}</a>
 </div>
 <div class="repos-description" [attr.title]="description">
   {{description}}
-  <a *ngIf="homepage" [href]="homepage">{{homepage}}</a>
+  <a draggable="false" *ngIf="homepage" [href]="homepage">{{homepage}}</a>
 </div>
 <button mat-icon-button class="more-btn">
   <mat-icon>more_vert</mat-icon>

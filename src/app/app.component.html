@@ -1,6 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <gs-toolbar [user]="user | async" (refresh)="onRefresh($event)" (replace)="openBindUserDialog()"></gs-toolbar>
 <gs-sidebar></gs-sidebar>
-<gs-stars-list [stars]="stars | async"></gs-stars-list>
-<gs-dnd-chip></gs-dnd-chip>
+<gs-stars-list [stars]="stars | async" (onDragStart)="onDragStart($event)"></gs-stars-list>
+<gs-dnd-chip #dnd></gs-dnd-chip>
+<!--<p #dnd> </p>-->
 <router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { GithubStar } from '../../models/github/github-star';
 
 @Component({
@@ -10,6 +10,7 @@ import { GithubStar } from '../../models/github/github-star';
 export class StarsListComponent implements OnInit {
 
   @Input() stars: GithubStar[];
+  @Output() onDragStart: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
