@@ -1,11 +1,15 @@
-import { Component, EventEmitter, Input, Output, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component, EventEmitter, Input, Output, OnInit, ViewEncapsulation,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { GithubUser } from '../../models/github-user';
 
 @Component({
   selector: 'gs-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.Emulated,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolbarComponent implements OnInit {
 

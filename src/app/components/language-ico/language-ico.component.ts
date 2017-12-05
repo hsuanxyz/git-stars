@@ -1,11 +1,12 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'gs-language-ico',
   template: `
     <div [class]="languageClass"></div>`,
   styleUrls: ['./language-ico.component.scss'],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.Emulated,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LanguageIcoComponent implements OnInit {
 

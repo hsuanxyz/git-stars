@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component, EventEmitter, HostBinding, HostListener, Input, OnInit, Output,
   ViewEncapsulation
 } from '@angular/core';
@@ -8,7 +9,8 @@ import { GithubStar } from '../../models/github-star';
   selector: 'gs-stars-item',
   templateUrl: './stars-item.component.html',
   styleUrls: ['./stars-item.component.scss'],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.Emulated,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StarsItemComponent implements OnInit {
 
