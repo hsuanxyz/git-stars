@@ -6,49 +6,26 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-/**
- * Material module
- */
-import { MaterialModule } from './material/material.module';
-/**
- * ngrx module
- */
+
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { AppComponent } from './app.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { StarsListComponent } from './components/stars-list/stars-list.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { FolderNodeComponent } from './components/folder-node/folder-node.component';
-import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 
-import { TreeModule } from 'angular-tree-component';
-import { StarsItemComponent } from './components/stars-item/stars-item.component';
 import { GithubService } from './services/github/github.service';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { MapLanguageIcoPipe } from './pipes/map-language-ico.pipe';
-import { LanguageIcoComponent } from './components/language-ico/language-ico.component';
 import { BindUserDialogComponent } from './components/bind-user-dialog/bind-user-dialog.component';
 
 import { githubStarsReducer } from './reducers/github-stars.reducer';
 import { githubUserReducer } from './reducers/github-user.reducer';
 
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponentsModule } from './components/app-components.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
-    StarsListComponent,
-    SidebarComponent,
-    FolderNodeComponent,
-    DndChipComponent,
-    StarsItemComponent,
-    MapLanguageIcoPipe,
-    LanguageIcoComponent,
-    BindUserDialogComponent
   ],
   entryComponents: [
     BindUserDialogComponent
@@ -60,8 +37,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     LazyLoadImageModule,
     AppRoutingModule,
-    MaterialModule,
-    TreeModule,
+    AppComponentsModule,
     StoreModule.forRoot({
       stars: githubStarsReducer,
       user: githubUserReducer
