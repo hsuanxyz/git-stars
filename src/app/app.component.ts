@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GithubService } from './services/github/github.service';
 import { GithubStar } from './models/github/github-star';
 import { Store } from '@ngrx/store';
@@ -81,8 +81,9 @@ export class AppComponent implements OnInit {
   }
 
   onDrag($event) {
-    this.dndComponent.nativeElement.style.left = `${$event.ref.clientX - this.dndComponent.WIDTH / 2}px`;
-    this.dndComponent.nativeElement.style.top = `${$event.ref.clientY - this.dndComponent.HEIGHT / 2}px`;
+    const x = `${$event.ref.clientX - this.dndComponent.WIDTH / 2}px`;
+    const y  = `${$event.ref.clientY - this.dndComponent.HEIGHT / 2}px`;
+    this.dndComponent.nativeElement.style.transform = `translate(${x}, ${y})`;
   }
 
 }

@@ -14,7 +14,9 @@
     color: #fff;
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
+    z-index: 2;
+    zoom: 1;
 
     .ico-wrap {
       height: 24px;
