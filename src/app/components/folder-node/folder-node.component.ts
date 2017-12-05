@@ -38,4 +38,8 @@ export class FolderNodeComponent implements OnInit {
   ngOnInit() {
   }
 
+  onMoveNode($event) {
+    console.log($event);
+  }
+
 }

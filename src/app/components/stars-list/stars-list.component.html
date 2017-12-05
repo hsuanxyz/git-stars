@@ -1,4 +1,7 @@
 <mat-card class="stars-warp">
-  <gs-stars-item *ngFor="let star of stars" [star]="star" (onDragStart)="onDragStart.emit($event)"></gs-stars-item>
+  <gs-stars-item *ngFor="let star of stars"
+                 [star]="star"
+                 (onDrag)="onDrag.emit($event)"
+                 (onDragStart)="onDragStart.emit($event)"></gs-stars-item>
 </mat-card>
 

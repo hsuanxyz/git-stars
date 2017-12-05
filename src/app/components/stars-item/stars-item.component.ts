@@ -15,6 +15,9 @@ export class StarsItemComponent implements OnInit {
   @Input() star: GithubStar;
   @Output() descriptionChange: EventEmitter<any> = new EventEmitter();
   @Output() onDragStart: EventEmitter<any> = new EventEmitter();
+  @Output() onDrag: EventEmitter<any> = new EventEmitter();
+
+  _ghostImage = new Image();
 
   get title(): string {
     return this.star.name;
@@ -44,6 +47,7 @@ export class StarsItemComponent implements OnInit {
 
   @HostListener('dragstart', ['$event'])
   _onDragStart($event: any) {
+    $event.dataTransfer.setDragImage(this._ghostImage, 0, 0);
     $event.dataTransfer.setData('id', this.star.id);
     this.onDragStart.emit({
       ref: $event,
@@ -51,9 +55,18 @@ export class StarsItemComponent implements OnInit {
     });
   }
 
+  @HostListener('drag', ['$event'])
+  _onDrag($event: any) {
+    this.onDrag.emit({
+      ref: $event,
+      star: this.star
+    })
+  }
+
   constructor() { }
 
   ngOnInit() {
+    this._ghostImage.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>';
   }
 
 }

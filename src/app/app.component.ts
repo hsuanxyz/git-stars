@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material';
 import { BindUserDialogComponent } from './components/bind-user-dialog/bind-user-dialog.component';
 import { GithubUser } from './models/github/github-user';
 import { SetUser } from './actions/github-user.actions';
+import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 
 interface AppState {
   stars: GithubStar[];
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit {
   stars: Observable<GithubStar[]>;
   user: Observable<GithubUser>;
   username = 'hsuanxyz';
-  @ViewChild('dnd') dndRef: ElementRef;
+  @ViewChild(DndChipComponent) dndComponent: DndChipComponent;
 
   constructor(
     private github: GithubService,
@@ -77,7 +78,11 @@ export class AppComponent implements OnInit {
   }
 
   onDragStart($event: any) {
-    console.log($event);
+  }
+
+  onDrag($event) {
+    this.dndComponent.nativeElement.style.left = `${$event.ref.clientX - this.dndComponent.WIDTH / 2}px`;
+    this.dndComponent.nativeElement.style.top = `${$event.ref.clientY - this.dndComponent.HEIGHT / 2}px`;
   }
 
 }
