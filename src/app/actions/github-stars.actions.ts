@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { GithubStar } from '../models/github/github-star';
+import { GithubStar } from '../models/github-star';
 
 export const SET = '[stars] Set';
 

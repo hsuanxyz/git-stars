@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { GithubUser } from '../models/github/github-user';
+import { GithubUser } from '../models/github-user';
 
 export const SET = '[user] Set';
 

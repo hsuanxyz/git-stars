@@ -2,7 +2,7 @@ import {
   Component, EventEmitter, HostBinding, HostListener, Input, OnInit, Output,
   ViewEncapsulation
 } from '@angular/core';
-import { GithubStar } from '../../models/github/github-star';
+import { GithubStar } from '../../models/github-star';
 
 @Component({
   selector: 'gs-stars-item',
@@ -60,7 +60,7 @@ export class StarsItemComponent implements OnInit {
     this.onDrag.emit({
       ref: $event,
       star: this.star
-    })
+    });
   }
 
   constructor() { }

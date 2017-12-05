@@ -1,6 +1,6 @@
 
 import * as GithubUserActions from '../actions/github-user.actions';
-import { GithubUser } from '../models/github/github-user';
+import { GithubUser } from '../models/github-user';
 
 export type Action = GithubUserActions.All;
 

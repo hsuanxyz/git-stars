@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { GithubStar } from '../../models/github/github-star';
+import {
+  Component, EventEmitter, Input, OnInit, Output,
+  ViewEncapsulation
+} from '@angular/core';
+import { GithubStar } from '../../models/github-star';
 
 @Component({
   selector: 'gs-stars-list',

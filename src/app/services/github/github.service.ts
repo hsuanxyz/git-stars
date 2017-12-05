@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 
 import * as parse from 'parse-link-header';
 
-import { GithubUser } from '../../models/github/github-user';
-import { GithubStar } from '../../models/github/github-star';
-import { GithubGist } from '../../models/github/github-gist';
+import { GithubUser } from '../../models/github-user';
+import { GithubStar } from '../../models/github-star';
+import { GithubGist } from '../../models/github-gist';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';

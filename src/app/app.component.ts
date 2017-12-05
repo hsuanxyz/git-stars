@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GithubService } from './services/github/github.service';
-import { GithubStar } from './models/github/github-star';
+import { GithubStar } from './models/github-star';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { SetStars } from './actions/github-stars.actions';
 import { MatDialog } from '@angular/material';
 import { BindUserDialogComponent } from './components/bind-user-dialog/bind-user-dialog.component';
-import { GithubUser } from './models/github/github-user';
+import { GithubUser } from './models/github-user';
 import { SetUser } from './actions/github-user.actions';
 import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 

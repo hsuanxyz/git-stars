@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnInit, ViewEncapsulation } from '@angular/core';
-import { GithubUser } from '../../models/github/github-user';
+import { GithubUser } from '../../models/github-user';
 
 @Component({
   selector: 'gs-toolbar',
