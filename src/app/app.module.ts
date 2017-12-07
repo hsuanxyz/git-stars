@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -31,6 +34,7 @@ import { AppComponentsModule } from './components/app-components.module';
     BindUserDialogComponent
   ],
   imports: [
+    environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
     BrowserModule,
     HttpClientModule,
     FormsModule,
