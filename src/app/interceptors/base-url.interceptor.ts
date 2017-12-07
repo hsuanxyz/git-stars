@@ -6,7 +6,7 @@ import {Observable} from 'rxjs/Observable';
 export class BaseUrlInterceptor implements HttpInterceptor {
 
   private BASE_URLS = {
-    'github': 'https://api.github.com/'
+    '@github': 'https://api.github.com'
   };
 
   constructor() {}
@@ -19,7 +19,7 @@ export class BaseUrlInterceptor implements HttpInterceptor {
   parseURL(url: string): string {
     const sources = Object.keys(this.BASE_URLS);
     for (let i = 0; i < sources.length; i++) {
-      const source = `${sources[i]}:`;
+      const source = `${sources[i]}`;
       if (url.indexOf(source) !== -1) {
         return url.replace(source, this.BASE_URLS[sources[i]]);
       }

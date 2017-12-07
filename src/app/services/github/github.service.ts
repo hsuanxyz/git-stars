@@ -41,7 +41,7 @@ export class GithubService {
    * @returns {Observable<GithubUser>}
    */
   user(username: string): Observable<GithubUser> {
-    return this.http.get<GithubUser>(`github:users/${username}`);
+    return this.http.get<GithubUser>(`@github/users/${username}`);
   }
 
   /**
@@ -50,7 +50,7 @@ export class GithubService {
    */
   _stars(params: PaginationParams): Observable<GithubStar[]> {
     const {username, perPage, page} = params;
-    return this.http.get<GithubStar[]>(`github:users/${username}/starred?per_page=${perPage}&page=${page}`);
+    return this.http.get<GithubStar[]>(`@github/users/${username}/starred?per_page=${perPage}&page=${page}`);
   }
 
   /**
@@ -79,7 +79,7 @@ export class GithubService {
    */
   gists(params: PaginationParams): Observable<GithubGist[]> {
     const {username, perPage, page} = params;
-    return this.http.get<GithubGist[]>(`github:users/${username}/gists?per_page=${perPage}&page=${page}`);
+    return this.http.get<GithubGist[]>(`@github/users/${username}/gists?per_page=${perPage}&page=${page}`);
   }
 
   /**
@@ -87,7 +87,7 @@ export class GithubService {
    * @returns {Observable<number>} starred count
    */
   getStarredCount(username: string): Observable<number> {
-    return this.http.get(`github:users/${username}/starred?per_page=1&page=1`, {observe: 'response'})
+    return this.http.get(`@github/users/${username}/starred?per_page=1&page=1`, {observe: 'response'})
     .map(res => {
       if (res.headers.has('link')) {
         // from https://github.com/egoist/starred-count/blob/master/index.js#L22
