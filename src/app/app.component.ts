@@ -9,6 +9,7 @@ import { BindUserDialogComponent } from './components/bind-user-dialog/bind-user
 import { GithubUser } from './models/github-user';
 import { SetUser } from './actions/github-user.actions';
 import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
+import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
 
 interface AppState {
   stars: GithubStar[];
@@ -24,7 +25,8 @@ export class AppComponent implements OnInit {
 
   stars: Observable<GithubStar[]>;
   user: Observable<GithubUser>;
-  username = 'hsuanxyz';
+  username = '';
+  dialogRef: MatDialogRef<BindUserDialogComponent>;
   @ViewChild(DndChipComponent) dndComponent: DndChipComponent;
 
   constructor(
@@ -36,8 +38,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUser();
-    this.getStars();
+    if (this.username) {
+      this.getUser();
+      this.getStars();
+    } else {
+      this.openBindUserDialog();
+    }
+
   }
 
   getStars() {
@@ -55,14 +62,17 @@ export class AppComponent implements OnInit {
   }
 
   openBindUserDialog() {
-    const dialogRef = this.dialog.open(BindUserDialogComponent, {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+     this.dialogRef = this.dialog.open(BindUserDialogComponent, {
       width: '256px',
       data: {
         username: this.username
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    this.dialogRef.afterClosed().subscribe(result => {
       if (typeof result === 'string' && result && result.toLowerCase() !== this.username.toLowerCase()) {
         this.username = result;
         this.getUser();
