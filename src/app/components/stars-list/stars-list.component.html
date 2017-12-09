@@ -1,5 +1,8 @@
-<mat-card class="stars-warp">
-  <gs-stars-item *ngFor="let star of stars"
+<mat-card class="loading-warp" *ngIf="stars.loading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</mat-card>
+<mat-card class="stars-warp" *ngIf="!stars.loading">
+  <gs-stars-item *ngFor="let star of stars.repo"
                  [star]="star"
                  (onDrag)="onDrag.emit($event)"
                  (onDragStart)="onDragStart.emit($event)"></gs-stars-item>

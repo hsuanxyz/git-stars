@@ -3,7 +3,7 @@ import {
   Component, EventEmitter, Input, OnInit, Output,
   ViewEncapsulation
 } from '@angular/core';
-import { GithubStar } from '../../models/github-star';
+import { StarsState } from '../../reducers/github-stars.reducer';
 
 @Component({
   selector: 'gs-stars-list',
@@ -14,7 +14,7 @@ import { GithubStar } from '../../models/github-star';
 })
 export class StarsListComponent implements OnInit {
 
-  @Input() stars: GithubStar[];
+  @Input() stars: StarsState;
   @Output() onDragStart: EventEmitter<any> = new EventEmitter();
   @Output() onDrag: EventEmitter<any> = new EventEmitter();
 
