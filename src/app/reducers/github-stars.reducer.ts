@@ -4,12 +4,30 @@ import { GithubStar } from '../models/github-star';
 
 export type Action = GithubStarsActions.All;
 
-const defaultState: GithubStar[] = [];
+export interface StarsState {
+  repo: GithubStar[];
+  loading: boolean;
+}
 
-export function githubStarsReducer(state: GithubStar[] = defaultState, action: Action) {
+const defaultState: StarsState = {
+  repo: [],
+  loading: false
+};
+
+export function githubStarsReducer(state: StarsState = defaultState, action: Action) {
   switch (action.type) {
-    case GithubStarsActions.SET:
-      return action.payload;
+    case GithubStarsActions.STAR_LOADING:
+      return {
+        repo: [],
+        loading: true
+      };
+
+    case GithubStarsActions.STAR_LOAD:
+      return {
+        repo: action.payload,
+        loading: false
+      };
+
     default:
       return state;
   }

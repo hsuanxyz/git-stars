@@ -1,18 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GithubService } from './services/github/github.service';
-import { GithubStar } from './models/github-star';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { SetStars } from './actions/github-stars.actions';
+import { StarsLoad, StarsLoading } from './actions/github-stars.actions';
 import { MatDialog } from '@angular/material';
 import { BindUserDialogComponent } from './components/bind-user-dialog/bind-user-dialog.component';
 import { GithubUser } from './models/github-user';
 import { SetUser } from './actions/github-user.actions';
 import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
+import { StarsState } from './reducers/github-stars.reducer';
 
 interface AppState {
-  stars: GithubStar[];
+  stars: StarsState;
   user: GithubUser;
 }
 
@@ -23,7 +23,7 @@ interface AppState {
 })
 export class AppComponent implements OnInit {
 
-  stars: Observable<GithubStar[]>;
+  stars: Observable<StarsState>;
   user: Observable<GithubUser>;
   username = '';
   dialogRef: MatDialogRef<BindUserDialogComponent>;
@@ -41,16 +41,15 @@ export class AppComponent implements OnInit {
     if (this.username) {
       this.getUser();
       this.getStars();
-    } else {
-      this.openBindUserDialog();
     }
 
   }
 
   getStars() {
+    this.store.dispatch(new StarsLoading('loading'));
     const starsSubscriber = this.github.stars(this.username).subscribe(res => {
       starsSubscriber.unsubscribe();
-      this.store.dispatch(new SetStars(res));
+      this.store.dispatch(new StarsLoad(res));
     });
   }
 
