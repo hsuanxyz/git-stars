@@ -22,6 +22,10 @@ export class BindUserDialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  onEnter() {
+    this.dialogRef.close(this.username);
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
