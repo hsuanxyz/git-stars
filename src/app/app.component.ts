@@ -10,6 +10,7 @@ import { SetUser } from './actions/github-user.actions';
 import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
 import { StarsState } from './reducers/github-stars.reducer';
+import { setTimeout } from "timers";
 
 interface AppState {
   stars: StarsState;
@@ -41,6 +42,8 @@ export class AppComponent implements OnInit {
     if (this.username) {
       this.getUser();
       this.getStars();
+    } else {
+      setTimeout(() => this.openBindUserDialog(), 0);
     }
 
   }
