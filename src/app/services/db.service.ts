@@ -3,6 +3,7 @@ import { Database } from '@ngrx/db';
 import { GithubUser } from '../models/github-user';
 import { last, map, toArray } from "rxjs/operators";
 import { Observable } from "rxjs/Observable";
+import { GithubStar } from "../models/github-star";
 
 @Injectable()
 export class DBService {
@@ -43,6 +44,16 @@ export class DBService {
         }
       })
     );
+  }
+
+  insertRepos(repos: GithubStar[], username: string) {
+    const data = repos.map(repo => ({
+      repo,
+      username,
+      id: repo.id,
+      insertTime: Date.now()
+    }));
+    return this.db.insert('repo', data);
   }
 
 }

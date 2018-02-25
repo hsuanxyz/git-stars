@@ -75,7 +75,13 @@ export class GithubService {
       return Observable.from(paging);
     })
     .concatAll()
-    .reduce((totalStars: GithubStar[], stars: GithubStar[]): GithubStar[] => [...totalStars, ...stars]);
+    .reduce((totalStars: GithubStar[], stars: GithubStar[]): GithubStar[] => [...totalStars, ...stars])
+    .do(stars => {
+      this.db.insertRepos(stars, username)
+      .subscribe(_ => {
+        return Observable.of(stars);
+      });
+    });
     // .mergeMap((count: number) => Observable.range(1, Math.ceil(count / 100)))
     // .mergeMap((counter: number) => this._stars({ username, page: counter, perPage: 100}))
     // .reduce((totalStars: GithubStar[], stars: GithubStar[]): GithubStar[] => [...totalStars, ...stars]);
