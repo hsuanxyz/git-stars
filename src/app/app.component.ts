@@ -42,12 +42,17 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.db.openDB()
     .subscribe(e => {
-      if (this.username) {
-        this.getUser();
-        this.getStars();
-      } else {
-        setTimeout(() => this.openBindUserDialog(), 0);
-      }
+      this.db.getUsers()
+      .subscribe(users => {
+        const user = users[0] ? users[0].user : null;
+        if (user) {
+          this.username = user.login;
+          this.store.dispatch(new SetUser(user));
+          this.getStars();
+        } else {
+          setTimeout(() => this.openBindUserDialog(), 0);
+        }
+      });
     });
   }
 
@@ -78,6 +83,7 @@ export class AppComponent implements OnInit {
     });
 
     this.dialogRef.afterClosed().subscribe(result => {
+      console.log(this.username);
       if (typeof result === 'string' && result && result.toLowerCase() !== this.username.toLowerCase()) {
         this.username = result;
         this.getUser();
