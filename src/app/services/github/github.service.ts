@@ -21,6 +21,7 @@ import 'rxjs/add/operator/reduce';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/of';
+import { DBService } from '../db.service';
 
 
 export class PaginationParams {
@@ -32,7 +33,7 @@ export class PaginationParams {
 @Injectable()
 export class GithubService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private db: DBService, ) {
   }
 
 
@@ -41,7 +42,13 @@ export class GithubService {
    * @returns {Observable<GithubUser>}
    */
   user(username: string): Observable<GithubUser> {
-    return this.http.get<GithubUser>(`@github/users/${username}`);
+    return this.http.get<GithubUser>(`@github/users/${username}`)
+    .do(user => {
+      this.db.addUser(user)
+      .subscribe(_ => {
+        return Observable.of(user);
+      });
+    });
   }
 
   /**
@@ -55,9 +62,10 @@ export class GithubService {
 
   /**
    * @param {string} username
+   * @param {boolean} useCache
    * @returns {Observable<GithubStar[]>}
    */
-  stars(username: string) {
+  stars(username: string, useCache = true) {
     return this.getStarredCount(username)
     .mergeMap((count: number) => {
       const paging: Observable<GithubStar[]>[] = [];

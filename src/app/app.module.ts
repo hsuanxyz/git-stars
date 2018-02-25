@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import { DBModule } from '@ngrx/db';
 
 import { GithubService } from './services/github/github.service';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
@@ -25,6 +25,8 @@ import { githubUserReducer } from './reducers/github-user.reducer';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponentsModule } from './components/app-components.module';
+import { schema } from './db';
+import { DBService } from './services/db.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { AppComponentsModule } from './components/app-components.module';
       user: githubUserReducer
     }),
     StoreDevtoolsModule.instrument({ maxAge: 10 }),
+    DBModule.provideDB(schema)
   ],
   providers: [
     {
@@ -54,7 +57,8 @@ import { AppComponentsModule } from './components/app-components.module';
       useClass: BaseUrlInterceptor,
       multi: true,
     },
-    GithubService
+    GithubService,
+    DBService
   ],
   bootstrap: [AppComponent]
 })

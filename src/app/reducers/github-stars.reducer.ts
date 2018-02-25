@@ -18,7 +18,7 @@ export function githubStarsReducer(state: StarsState = defaultState, action: Act
   switch (action.type) {
     case GithubStarsActions.STAR_LOADING:
       return {
-        repo: [],
+        ...state,
         loading: true
       };
 
