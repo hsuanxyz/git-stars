@@ -62,10 +62,15 @@ export class GithubService {
 
   /**
    * @param {string} username
-   * @param {boolean} useCache
+   * @param {boolean} useLocalDB
    * @returns {Observable<GithubStar[]>}
    */
-  stars(username: string, useCache = true) {
+  stars(username: string, useLocalDB = true) {
+
+    if (useLocalDB) {
+      return this.db.getRepos(username);
+    }
+
     return this.getStarredCount(username)
     .mergeMap((count: number) => {
       const paging: Observable<GithubStar[]>[] = [];

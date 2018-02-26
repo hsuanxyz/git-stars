@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Database } from '@ngrx/db';
 import { GithubUser } from '../models/github-user';
-import { last, map, toArray } from "rxjs/operators";
-import { Observable } from "rxjs/Observable";
-import { GithubStar } from "../models/github-star";
+import { map, toArray } from 'rxjs/operators';
+import { Observable } from 'rxjs/Observable';
+import { GithubStar } from '../models/github-star';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class DBService {
@@ -54,6 +55,21 @@ export class DBService {
       insertTime: Date.now()
     }));
     return this.db.insert('repo', data);
+  }
+
+  /**
+   *
+   * @param {string} username
+   * @returns {Observable<GithubStar[]>}
+   */
+  getRepos(username: string): Observable<GithubStar[]> {
+    return this.db.query('repo', rec => rec.username.toLowerCase() === username.toLowerCase())
+    .pipe(
+      toArray(),
+      map((repos: any[]) => {
+        return repos.map((repo: any) => repo.repo);
+      })
+    );
   }
 
 }

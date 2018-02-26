@@ -56,9 +56,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-  getStars() {
+  getStars(useLocalDB = true) {
     this.store.dispatch(new StarsLoading('loading'));
-    const starsSubscriber = this.github.stars(this.username).subscribe(res => {
+    const starsSubscriber = this.github.stars(this.username, useLocalDB).subscribe(res => {
       starsSubscriber.unsubscribe();
       this.store.dispatch(new StarsLoad(res));
     });
@@ -87,14 +87,14 @@ export class AppComponent implements OnInit {
       if (typeof result === 'string' && result && result.toLowerCase() !== this.username.toLowerCase()) {
         this.username = result;
         this.getUser();
-        this.getStars();
+        this.getStars(false);
       }
     });
   }
 
   onRefresh($event) {
     if ($event && $event.toLowerCase() === this.username.toLowerCase()) {
-      this.getStars();
+      this.getStars(false);
     }
   }
 
