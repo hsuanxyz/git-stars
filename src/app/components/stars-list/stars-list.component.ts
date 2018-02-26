@@ -16,6 +16,7 @@ export class StarsListComponent implements OnInit {
 
   @Input() stars: StarsState;
   @Output() onDragStart: EventEmitter<any> = new EventEmitter();
+  @Output() onDragEnd: EventEmitter<any> = new EventEmitter();
   @Output() onDrag: EventEmitter<any> = new EventEmitter();
 
   constructor() { }

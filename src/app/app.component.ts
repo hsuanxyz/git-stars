@@ -11,6 +11,7 @@ import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
 import { StarsState } from './reducers/github-stars.reducer';
 import { DBService } from './services/db.service';
+import { GithubStar } from "./models/github-star";
 
 interface AppState {
   stars: StarsState;
@@ -25,6 +26,7 @@ interface AppState {
 export class AppComponent implements OnInit {
 
   stars: Observable<StarsState>;
+  dndRepo: GithubStar | null = null;
   user: Observable<GithubUser>;
   username = '';
   dialogRef: MatDialogRef<BindUserDialogComponent>;
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dndComponent.nativeElement.style.visibility = 'hidden';
     this.db.openDB()
     .subscribe(e => {
       this.db.getUsers()
@@ -99,12 +102,24 @@ export class AppComponent implements OnInit {
   }
 
   onDragStart($event: any) {
+    this.dndComponent.nativeElement.style.visibility = 'unset';
+  }
+
+  onDragEnd($event: any) {
+    this.dndComponent.nativeElement.style.visibility = 'hidden';
   }
 
   onDrag($event) {
+    this.setDndRepo($event.star);
     const x = `${$event.ref.clientX - this.dndComponent.WIDTH / 2}px`;
     const y  = `${$event.ref.clientY - this.dndComponent.HEIGHT / 2}px`;
     this.dndComponent.nativeElement.style.transform = `translate(${x}, ${y})`;
+  }
+
+  setDndRepo(repo: GithubStar) {
+    if (!this.dndRepo || this.dndRepo.id !== repo.id) {
+      this.dndRepo = repo;
+    }
   }
 
 }

@@ -17,6 +17,7 @@ export class StarsItemComponent implements OnInit {
   @Input() star: GithubStar;
   @Output() descriptionChange: EventEmitter<any> = new EventEmitter();
   @Output() onDragStart: EventEmitter<any> = new EventEmitter();
+  @Output() onDragEnd: EventEmitter<any> = new EventEmitter();
   @Output() onDrag: EventEmitter<any> = new EventEmitter();
 
   _ghostImage = new Image();
@@ -52,6 +53,14 @@ export class StarsItemComponent implements OnInit {
     $event.dataTransfer.setDragImage(this._ghostImage, 0, 0);
     $event.dataTransfer.setData('id', this.star.id);
     this.onDragStart.emit({
+      ref: $event,
+      star: this.star
+    });
+  }
+
+  @HostListener('dragend', ['$event'])
+  _onDragEnd($event: any) {
+    this.onDragEnd.emit({
       ref: $event,
       star: this.star
     });

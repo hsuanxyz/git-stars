@@ -5,6 +5,7 @@
   <gs-stars-item *ngFor="let star of stars.repo"
                  [star]="star"
                  (onDrag)="onDrag.emit($event)"
+                 (onDragEnd)="onDragEnd.emit($event)"
                  (onDragStart)="onDragStart.emit($event)"></gs-stars-item>
 </mat-card>
 

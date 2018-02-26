@@ -3,7 +3,8 @@
 <gs-sidebar></gs-sidebar>
 <gs-stars-list [stars]="stars | async"
                (onDrag)="onDrag($event)"
+               (onDragEnd)="onDragEnd($event)"
                (onDragStart)="onDragStart($event)">
 </gs-stars-list>
-<gs-dnd-chip></gs-dnd-chip>
+<gs-dnd-chip [repo]="dndRepo"></gs-dnd-chip>
 <router-outlet></router-outlet>

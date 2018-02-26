@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
+import { GithubStar } from '../../models/github-star';
 
 @Component({
   selector: 'gs-dnd-chip',
@@ -11,6 +15,7 @@ export class DndChipComponent implements OnInit {
   WIDTH = 172;
   HEIGHT = 40;
   @ViewChild('dnd') dndWrap: ElementRef;
+  @Input() repo: GithubStar;
   get nativeElement() {
     return this.dndWrap.nativeElement;
   }
