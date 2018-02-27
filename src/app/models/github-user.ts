@@ -39,3 +39,12 @@ export class GithubUser {
   created_at: string;
   updated_at: string;
 }
+
+/**
+ * 数据库- 用户模型
+ */
+export class DBGithubUser {
+  user: GithubUser;
+  id: number;
+  insertTime: number;
+}

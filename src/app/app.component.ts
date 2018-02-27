@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
     .subscribe(e => {
       this.db.getUsers()
       .subscribe(users => {
-        const user = users[0] ? users[0].user : null;
+        const user = users[0] ? users[0] : null;
         if (user) {
           this.username = user.login;
           this.store.dispatch(new SetUser(user));

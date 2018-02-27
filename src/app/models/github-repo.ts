@@ -88,6 +88,16 @@ export class GithubRepo {
   default_branch: string;
 }
 
+/**
+ * 数据库 - Github库模型
+ */
+export class DBGithubRepo {
+  repo: GithubRepo;
+  username: string;
+  id: number;
+  insertTime: number;
+}
+
 export type GithubRepoLanguage = (
   'markdown'
   | 'github'

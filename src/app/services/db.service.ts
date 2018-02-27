@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Database } from '@ngrx/db';
-import { GithubUser } from '../models/github-user';
+import { DBGithubUser, GithubUser } from '../models/github-user';
 import { map, toArray } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
-import { GithubRepo } from '../models/github-repo';
+import { DBGithubRepo, GithubRepo } from '../models/github-repo';
 import 'rxjs/add/observable/of';
 
 @Injectable()
@@ -25,7 +25,7 @@ export class DBService {
    * @returns {Observable<any>}
    */
   addUser(user: GithubUser) {
-    const data = {
+    const data: DBGithubUser = {
       user,
       id: user.id,
       insertTime: Date.now()
@@ -33,13 +33,19 @@ export class DBService {
     return this.db.insert('user', [data]);
   }
 
-  getUsers() {
+  /**
+   * getUsers
+   * @returns {Observable<DBGithubUser[]>}
+   */
+  getUsers(): Observable<GithubUser[]> {
     return this.db.query('user')
     .pipe(
       toArray(),
-      map((users: any[]) => {
+      map((users: DBGithubUser[]) => {
         if (Array.isArray(users) && users.length) {
-          return users.sort((a, b) => b.insertTime - a.insertTime);
+          return users
+          .sort((a, b) => b.insertTime - a.insertTime)
+          .map((user: DBGithubUser) => user.user);
         } else {
           return [];
         }
@@ -47,8 +53,14 @@ export class DBService {
     );
   }
 
+  /**
+   * insertRepos
+   * @param {GithubRepo[]} repos
+   * @param {string} username
+   * @returns {Observable<any>}
+   */
   insertRepos(repos: GithubRepo[], username: string) {
-    const data = repos.map(repo => ({
+    const data: DBGithubRepo[] = repos.map(repo => ({
       repo,
       username,
       id: repo.id,
@@ -58,16 +70,18 @@ export class DBService {
   }
 
   /**
-   *
+   * getRepos
    * @param {string} username
    * @returns {Observable<GithubRepo[]>}
    */
   getRepos(username: string): Observable<GithubRepo[]> {
-    return this.db.query('repo', rec => rec.username.toLowerCase() === username.toLowerCase())
+    return this.db.query(
+      'repo',
+      rec => rec.username.toLowerCase() === username.toLowerCase())
     .pipe(
       toArray(),
-      map((repos: any[]) => {
-        return repos.map((repo: any) => repo.repo);
+      map((repos: DBGithubRepo[]) => {
+        return repos.map(repo => repo.repo);
       })
     );
   }
