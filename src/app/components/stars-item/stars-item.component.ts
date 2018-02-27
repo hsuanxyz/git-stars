@@ -15,6 +15,7 @@ import { GithubRepo } from '../../models/github-repo';
 export class StarsItemComponent implements OnInit {
 
   @Input() star: GithubRepo;
+  @Input() keywords = '';
   @Output() descriptionChange: EventEmitter<any> = new EventEmitter();
   @Output() onDragStart: EventEmitter<any> = new EventEmitter();
   @Output() onDragEnd: EventEmitter<any> = new EventEmitter();

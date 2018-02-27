@@ -15,6 +15,7 @@ import { StarsItemComponent } from './stars-item/stars-item.component';
 import { LanguageIcoComponent } from './language-ico/language-ico.component';
 import { BindUserDialogComponent } from './bind-user-dialog/bind-user-dialog.component';
 import { RepoSearchPipe } from '../pipes/repo-search.pipe';
+import { HighlightPipe } from '../pipes/highlight.pipe';
 
 
 const APP_COMPONENTS = [
@@ -31,10 +32,10 @@ const APP_COMPONENTS = [
 @NgModule({
   imports: [CommonModule, MaterialModule, TreeModule, LazyLoadImageModule, FormsModule],
   exports: [...APP_COMPONENTS],
-  declarations: [...APP_COMPONENTS, RepoSearchPipe],
+  declarations: [...APP_COMPONENTS, RepoSearchPipe, HighlightPipe],
   entryComponents: [
     BindUserDialogComponent
   ],
-  providers: [RepoSearchPipe]
+  providers: [RepoSearchPipe, HighlightPipe]
 })
 export class AppComponentsModule { }

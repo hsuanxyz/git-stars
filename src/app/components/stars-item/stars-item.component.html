@@ -4,10 +4,10 @@
      [offset]="128">
 </div>
 <div class="repos-title">
-  <a draggable="false" [href]="repoUrl">{{title}}</a>
+  <a draggable="false" [href]="repoUrl" [innerHTML]="title  | highlight : keywords"></a>
 </div>
 <div class="repos-description" [attr.title]="description">
-  {{description}}
+  <span [innerHTML]="description  | highlight : keywords"></span>
   <a draggable="false" *ngIf="homepage" [href]="homepage">{{homepage}}</a>
 </div>
 <button mat-icon-button class="more-btn">

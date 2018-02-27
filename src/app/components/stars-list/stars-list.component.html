@@ -4,6 +4,7 @@
 <mat-card class="stars-warp" *ngIf="!stars.loading">
   <gs-stars-item *ngFor="let star of stars.repo | repoSearch: keywords"
                  [star]="star"
+                 [keywords]="keywords"
                  (onDrag)="onDrag.emit($event)"
                  (onDragEnd)="onDragEnd.emit($event)"
                  (onDragStart)="onDragStart.emit($event)"></gs-stars-item>
