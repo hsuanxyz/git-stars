@@ -11,7 +11,7 @@ import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
 import { StarsState } from './reducers/github-stars.reducer';
 import { DBService } from './services/db.service';
-import { GithubStar } from "./models/github-star";
+import { GithubRepo } from "./models/github-star";
 
 interface AppState {
   stars: StarsState;
@@ -26,7 +26,7 @@ interface AppState {
 export class AppComponent implements OnInit {
 
   stars: Observable<StarsState>;
-  dndRepo: GithubStar | null = null;
+  dndRepo: GithubRepo | null = null;
   user: Observable<GithubUser>;
   username = '';
   dialogRef: MatDialogRef<BindUserDialogComponent>;
@@ -116,7 +116,7 @@ export class AppComponent implements OnInit {
     this.dndComponent.nativeElement.style.transform = `translate(${x}, ${y})`;
   }
 
-  setDndRepo(repo: GithubStar) {
+  setDndRepo(repo: GithubRepo) {
     if (!this.dndRepo || this.dndRepo.id !== repo.id) {
       this.dndRepo = repo;
     }

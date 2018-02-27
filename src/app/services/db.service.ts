@@ -3,7 +3,7 @@ import { Database } from '@ngrx/db';
 import { GithubUser } from '../models/github-user';
 import { map, toArray } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
-import { GithubStar } from '../models/github-star';
+import { GithubRepo } from '../models/github-star';
 import 'rxjs/add/observable/of';
 
 @Injectable()
@@ -47,7 +47,7 @@ export class DBService {
     );
   }
 
-  insertRepos(repos: GithubStar[], username: string) {
+  insertRepos(repos: GithubRepo[], username: string) {
     const data = repos.map(repo => ({
       repo,
       username,
@@ -60,9 +60,9 @@ export class DBService {
   /**
    *
    * @param {string} username
-   * @returns {Observable<GithubStar[]>}
+   * @returns {Observable<GithubRepo[]>}
    */
-  getRepos(username: string): Observable<GithubStar[]> {
+  getRepos(username: string): Observable<GithubRepo[]> {
     return this.db.query('repo', rec => rec.username.toLowerCase() === username.toLowerCase())
     .pipe(
       toArray(),

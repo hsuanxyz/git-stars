@@ -3,7 +3,7 @@ import {
   Component, EventEmitter, HostBinding, HostListener, Input, OnInit, Output,
   ViewEncapsulation
 } from '@angular/core';
-import { GithubStar } from '../../models/github-star';
+import { GithubRepo } from '../../models/github-star';
 
 @Component({
   selector: 'gs-stars-item',
@@ -14,7 +14,7 @@ import { GithubStar } from '../../models/github-star';
 })
 export class StarsItemComponent implements OnInit {
 
-  @Input() star: GithubStar;
+  @Input() star: GithubRepo;
   @Output() descriptionChange: EventEmitter<any> = new EventEmitter();
   @Output() onDragStart: EventEmitter<any> = new EventEmitter();
   @Output() onDragEnd: EventEmitter<any> = new EventEmitter();

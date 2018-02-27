@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import * as parse from 'parse-link-header';
 
 import { GithubUser } from '../../models/github-user';
-import { GithubStar } from '../../models/github-star';
+import { GithubRepo } from '../../models/github-star';
 import { GithubGist } from '../../models/github-gist';
 
 import { Observable } from 'rxjs/Observable';
@@ -53,17 +53,17 @@ export class GithubService {
 
   /**
    * @param {PaginationParams} params
-   * @returns {Observable<GithubStar[]>}
+   * @returns {Observable<GithubRepo[]>}
    */
-  _stars(params: PaginationParams): Observable<GithubStar[]> {
+  _stars(params: PaginationParams): Observable<GithubRepo[]> {
     const {username, perPage, page} = params;
-    return this.http.get<GithubStar[]>(`@github/users/${username}/starred?per_page=${perPage}&page=${page}`);
+    return this.http.get<GithubRepo[]>(`@github/users/${username}/starred?per_page=${perPage}&page=${page}`);
   }
 
   /**
    * @param {string} username
    * @param {boolean} useLocalDB
-   * @returns {Observable<GithubStar[]>}
+   * @returns {Observable<GithubRepo[]>}
    */
   stars(username: string, useLocalDB = true) {
 
@@ -73,14 +73,14 @@ export class GithubService {
 
     return this.getStarredCount(username)
     .mergeMap((count: number) => {
-      const paging: Observable<GithubStar[]>[] = [];
+      const paging: Observable<GithubRepo[]>[] = [];
       for (let i = 0; i < Math.ceil(count / 100); i++) {
         paging.push(this._stars({ username, page: i, perPage: 100}));
       }
       return Observable.from(paging);
     })
     .concatAll()
-    .reduce((totalStars: GithubStar[], stars: GithubStar[]): GithubStar[] => [...totalStars, ...stars])
+    .reduce((totalStars: GithubRepo[], stars: GithubRepo[]): GithubRepo[] => [...totalStars, ...stars])
     .do(stars => {
       this.db.insertRepos(stars, username)
       .subscribe(_ => {

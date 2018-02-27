@@ -1,6 +1,6 @@
 import { GithubOwner } from './github-owner';
 
-export class GithubStar {
+export class GithubRepo {
   id: number;
   name: string;
   full_name: string;

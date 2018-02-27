@@ -1,12 +1,12 @@
 import { Action } from '@ngrx/store';
-import { GithubStar } from '../models/github-star';
+import { GithubRepo } from '../models/github-star';
 
 export const STAR_LOAD = '[Star] Load';
 export const STAR_LOADING = '[Star] Loading';
 
 export class StarsLoad implements Action {
   readonly type = STAR_LOAD;
-  constructor(public payload: GithubStar[]) {}
+  constructor(public payload: GithubRepo[]) {}
 }
 
 export class StarsLoading implements Action {

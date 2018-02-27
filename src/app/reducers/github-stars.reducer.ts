@@ -1,11 +1,11 @@
 
 import * as GithubStarsActions from '../actions/github-stars.actions';
-import { GithubStar } from '../models/github-star';
+import { GithubRepo } from '../models/github-star';
 
 export type Action = GithubStarsActions.All;
 
 export interface StarsState {
-  repo: GithubStar[];
+  repo: GithubRepo[];
   loading: boolean;
 }
 
