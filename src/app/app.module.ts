@@ -58,7 +58,7 @@ import { DBService } from './services/db.service';
       multi: true,
     },
     GithubService,
-    DBService
+    DBService,
   ],
   bootstrap: [AppComponent]
 })

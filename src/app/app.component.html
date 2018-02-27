@@ -2,10 +2,12 @@
 <gs-toolbar [user]="user | async"
             (refresh)="onRefresh($event)"
             (replace)="openBindUserDialog()"
+            (searchChange)="searchChange($event)"
             (toggleCollapsed)="toggleCollapsed()">
 </gs-toolbar>
 <gs-sidebar *ngIf="!isCollapsed"></gs-sidebar>
 <gs-stars-list [stars]="stars | async"
+               [keywords]="keywords"
                (onDrag)="onDrag($event)"
                (onDragEnd)="onDragEnd($event)"
                (onDragStart)="onDragStart($event)">

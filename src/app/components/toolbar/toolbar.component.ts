@@ -13,10 +13,13 @@ import { GithubUser } from '../../models/github-user';
 })
 export class ToolbarComponent implements OnInit {
 
+  searchTerm: string;
   @Input() user: GithubUser;
   @Output() refresh: EventEmitter<string> = new EventEmitter();
-  @Output() replace: EventEmitter<any> = new EventEmitter();
-  @Output() toggleCollapsed: EventEmitter<any> = new EventEmitter();
+  @Output() replace: EventEmitter<void> = new EventEmitter();
+  @Output() toggleCollapsed: EventEmitter<void> = new EventEmitter();
+  @Output() searchChange: EventEmitter<string> = new EventEmitter();
+
   get userAvatar() {
     return this.user && `${this.user.avatar_url}&s=80` || '';
   }
@@ -40,5 +43,14 @@ export class ToolbarComponent implements OnInit {
 
   onToggleCollapsed() {
     this.toggleCollapsed.emit();
+  }
+
+  onSearchChange($event: string) {
+    this.searchChange.emit($event);
+  }
+
+  clear() {
+    this.searchTerm = '';
+    this.searchChange.emit('');
   }
 }

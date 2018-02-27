@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
   dndRepo: GithubRepo | null = null;
   user: Observable<GithubUser>;
   username = '';
+  keywords = '';
   isCollapsed = false;
   dialogRef: MatDialogRef<BindUserDialogComponent>;
   @ViewChild(DndChipComponent) dndComponent: DndChipComponent;
@@ -98,6 +99,10 @@ export class AppComponent implements OnInit {
 
   toggleCollapsed() {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  searchChange($event: string) {
+    this.keywords = $event;
   }
 
   onRefresh($event) {

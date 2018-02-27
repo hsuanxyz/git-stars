@@ -14,6 +14,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { StarsItemComponent } from './stars-item/stars-item.component';
 import { LanguageIcoComponent } from './language-ico/language-ico.component';
 import { BindUserDialogComponent } from './bind-user-dialog/bind-user-dialog.component';
+import { RepoSearchPipe } from '../pipes/repo-search.pipe';
+
 
 const APP_COMPONENTS = [
   ToolbarComponent,
@@ -29,9 +31,10 @@ const APP_COMPONENTS = [
 @NgModule({
   imports: [CommonModule, MaterialModule, TreeModule, LazyLoadImageModule, FormsModule],
   exports: [...APP_COMPONENTS],
-  declarations: [...APP_COMPONENTS],
+  declarations: [...APP_COMPONENTS, RepoSearchPipe],
   entryComponents: [
     BindUserDialogComponent
   ],
+  providers: [RepoSearchPipe]
 })
 export class AppComponentsModule { }

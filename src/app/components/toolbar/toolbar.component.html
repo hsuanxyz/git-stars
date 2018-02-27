@@ -14,9 +14,9 @@
       </button>
       <div class="input-wrap">
         <label for="search"></label>
-        <input placeholder="搜索" autocomplete="off" id="search" type="text">
+        <input [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange($event)" placeholder="搜索" autocomplete="off" id="search" type="text">
       </div>
-      <button mat-icon-button class="clear-btn">
+      <button mat-icon-button class="clear-btn" (click)="clear()">
         <mat-icon>clear</mat-icon>
       </button>
     </div>

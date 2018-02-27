@@ -15,6 +15,7 @@ import { StarsState } from '../../reducers/github-stars.reducer';
 export class StarsListComponent implements OnInit {
 
   @Input() stars: StarsState;
+  @Input() keywords = '';
   @Output() onDragStart: EventEmitter<any> = new EventEmitter();
   @Output() onDragEnd: EventEmitter<any> = new EventEmitter();
   @Output() onDrag: EventEmitter<any> = new EventEmitter();
