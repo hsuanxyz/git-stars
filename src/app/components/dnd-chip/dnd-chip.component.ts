@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { GithubRepo } from '../../models/github-star';
+import { GithubRepo } from '../../models/github-repo';
 
 @Component({
   selector: 'gs-dnd-chip',

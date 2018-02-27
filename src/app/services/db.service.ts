@@ -3,7 +3,7 @@ import { Database } from '@ngrx/db';
 import { GithubUser } from '../models/github-user';
 import { map, toArray } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
-import { GithubRepo } from '../models/github-star';
+import { GithubRepo } from '../models/github-repo';
 import 'rxjs/add/observable/of';
 
 @Injectable()

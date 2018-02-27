@@ -1,3 +1,6 @@
+/**
+ * Github - 库作者数据模型
+ */
 export class GithubOwner {
   login: string;
   id: number;

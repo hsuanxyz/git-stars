@@ -1,4 +1,10 @@
+/**
+ * GitHub - 用户数据模型
+ */
 export class GithubUser {
+  /**
+   * 登录名(唯一)
+   */
   login: string;
   id: number;
   avatar_url: string;
@@ -16,6 +22,9 @@ export class GithubUser {
   received_events_url: string;
   type: string;
   site_admin: boolean;
+  /**
+   * 用户名名
+   */
   name: string;
   company: string;
   blog: string;

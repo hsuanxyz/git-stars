@@ -1,6 +1,9 @@
 import { GithubOwner } from './github-owner';
 import { GithubUser } from './github-user';
 
+/**
+ * Github - Gist数据模型
+ */
 export class GithubGist {
   url: string;
   forks_url: string;

@@ -1,12 +1,24 @@
 import { GithubOwner } from './github-owner';
 
+/**
+ * Github - 库数据模型
+ */
 export class GithubRepo {
   id: number;
+  /**
+   * 名称
+   */
   name: string;
   full_name: string;
+  /**
+   * 作者
+   */
   owner: GithubOwner;
   private: boolean;
   html_url: string;
+  /**
+   * 描述
+   */
   description: string;
   fork: boolean;
   url: string;
@@ -57,6 +69,9 @@ export class GithubRepo {
   size: number;
   stargazers_count: number;
   watchers_count: number;
+  /**
+   * 使用的语言
+   */
   language: string;
   has_issues: boolean;
   has_projects: boolean;

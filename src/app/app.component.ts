@@ -11,7 +11,7 @@ import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
 import { StarsState } from './reducers/github-stars.reducer';
 import { DBService } from './services/db.service';
-import { GithubRepo } from "./models/github-star";
+import { GithubRepo } from "./models/github-repo";
 
 interface AppState {
   stars: StarsState;

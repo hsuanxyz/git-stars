@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import * as parse from 'parse-link-header';
 
 import { GithubUser } from '../../models/github-user';
-import { GithubRepo } from '../../models/github-star';
+import { GithubRepo } from '../../models/github-repo';
 import { GithubGist } from '../../models/github-gist';
 
 import { Observable } from 'rxjs/Observable';

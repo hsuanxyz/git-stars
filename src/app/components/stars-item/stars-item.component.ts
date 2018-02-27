@@ -3,7 +3,7 @@ import {
   Component, EventEmitter, HostBinding, HostListener, Input, OnInit, Output,
   ViewEncapsulation
 } from '@angular/core';
-import { GithubRepo } from '../../models/github-star';
+import { GithubRepo } from '../../models/github-repo';
 
 @Component({
   selector: 'gs-stars-item',

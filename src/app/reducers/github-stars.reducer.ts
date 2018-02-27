@@ -1,6 +1,6 @@
 
 import * as GithubStarsActions from '../actions/github-stars.actions';
-import { GithubRepo } from '../models/github-star';
+import { GithubRepo } from '../models/github-repo';
 
 export type Action = GithubStarsActions.All;
 

@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { GithubRepo } from '../models/github-star';
+import { GithubRepo } from '../models/github-repo';
 
 export const STAR_LOAD = '[Star] Load';
 export const STAR_LOADING = '[Star] Loading';
