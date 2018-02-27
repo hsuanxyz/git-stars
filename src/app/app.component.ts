@@ -11,7 +11,7 @@ import { DndChipComponent } from './components/dnd-chip/dnd-chip.component';
 import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
 import { StarsState } from './reducers/github-stars.reducer';
 import { DBService } from './services/db.service';
-import { GithubRepo } from "./models/github-repo";
+import { GithubRepo } from './models/github-repo';
 
 interface AppState {
   stars: StarsState;
@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
   dndRepo: GithubRepo | null = null;
   user: Observable<GithubUser>;
   username = '';
+  isCollapsed = false;
   dialogRef: MatDialogRef<BindUserDialogComponent>;
   @ViewChild(DndChipComponent) dndComponent: DndChipComponent;
 
@@ -93,6 +94,10 @@ export class AppComponent implements OnInit {
         this.getStars(false);
       }
     });
+  }
+
+  toggleCollapsed() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
   onRefresh($event) {

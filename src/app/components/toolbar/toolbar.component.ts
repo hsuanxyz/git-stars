@@ -16,7 +16,7 @@ export class ToolbarComponent implements OnInit {
   @Input() user: GithubUser;
   @Output() refresh: EventEmitter<string> = new EventEmitter();
   @Output() replace: EventEmitter<any> = new EventEmitter();
-
+  @Output() toggleCollapsed: EventEmitter<any> = new EventEmitter();
   get userAvatar() {
     return this.user && `${this.user.avatar_url}&s=80` || '';
   }
@@ -36,5 +36,9 @@ export class ToolbarComponent implements OnInit {
 
   onReplace() {
     this.replace.emit();
+  }
+
+  onToggleCollapsed() {
+    this.toggleCollapsed.emit();
   }
 }

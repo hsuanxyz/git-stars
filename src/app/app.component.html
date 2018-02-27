@@ -1,6 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<gs-toolbar [user]="user | async" (refresh)="onRefresh($event)" (replace)="openBindUserDialog()"></gs-toolbar>
-<gs-sidebar></gs-sidebar>
+<gs-toolbar [user]="user | async"
+            (refresh)="onRefresh($event)"
+            (replace)="openBindUserDialog()"
+            (toggleCollapsed)="toggleCollapsed()">
+</gs-toolbar>
+<gs-sidebar *ngIf="!isCollapsed"></gs-sidebar>
 <gs-stars-list [stars]="stars | async"
                (onDrag)="onDrag($event)"
                (onDragEnd)="onDragEnd($event)"
