@@ -72,7 +72,7 @@ export class GithubRepo {
   /**
    * 使用的语言
    */
-  language: string;
+  language: GithubRepoLanguage;
   has_issues: boolean;
   has_projects: boolean;
   has_downloads: boolean;
@@ -87,3 +87,26 @@ export class GithubRepo {
   watchers: number;
   default_branch: string;
 }
+
+export type GithubRepoLanguage = (
+  'markdown'
+  | 'github'
+  | 'c'
+  | 'csharp'
+  | 'objective-c'
+  | 'cplusplus'
+  | 'lua'
+  | 'css'
+  | 'clojure'
+  | 'go'
+  | 'vue'
+  | 'vim'
+  | 'html'
+  | 'java'
+  | 'javascript'
+  | 'php'
+  | 'python'
+  | 'ruby'
+  | 'swift'
+  | 'typescript'
+  );
