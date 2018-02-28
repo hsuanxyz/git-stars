@@ -1,7 +1,7 @@
 // https://gist.github.com/adamrecsko/0f28f474eca63e0279455476cc11eca7
 
 import { PipeTransform, Pipe } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Pipe({ name: 'highlight' })
 export class HighlightPipe implements PipeTransform {

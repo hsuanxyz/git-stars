@@ -60,12 +60,15 @@ export class DBService {
    * @returns {Observable<any>}
    */
   insertRepos(repos: GithubRepo[], username: string) {
-    const data: DBGithubRepo[] = repos.map(repo => ({
-      repo,
-      username,
-      id: repo.id,
-      insertTime: Date.now()
-    }));
+    const data: DBGithubRepo[] = repos.map((repo, index) => {
+      return {
+        index,
+        repo,
+        username,
+        id: repo.id,
+        insertTime: Date.now()
+      };
+    });
     return this.db.insert('repo', data);
   }
 
@@ -81,7 +84,9 @@ export class DBService {
     .pipe(
       toArray(),
       map((repos: DBGithubRepo[]) => {
-        return repos.map(repo => repo.repo);
+        return repos
+        .sort((a, b) => a.index - b.index)
+        .map(repo => repo.repo);
       })
     );
   }

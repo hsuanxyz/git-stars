@@ -96,6 +96,7 @@ export class DBGithubRepo {
   username: string;
   id: number;
   insertTime: number;
+  index: number;
 }
 
 export type GithubRepoLanguage = (
