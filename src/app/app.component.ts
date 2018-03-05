@@ -25,9 +25,11 @@ interface AppState {
 })
 export class AppComponent implements OnInit {
 
-  stars: Observable<StarsState>;
+  loading$: Observable<boolean>;
+  repos$: Observable<GithubRepo[]>;
+  user$: Observable<GithubUser>;
+
   dndRepo: GithubRepo | null = null;
-  user: Observable<GithubUser>;
   username = '';
   keywords = '';
   isCollapsed = false;
@@ -39,8 +41,9 @@ export class AppComponent implements OnInit {
     private store: Store<AppState>,
     private db: DBService,
     public dialog: MatDialog) {
-    this.stars = this.store.select('stars');
-    this.user = this.store.select('user');
+    this.user$ = this.store.select('user');
+    this.loading$ = this.store.select('stars', 'loading');
+    this.repos$ = this.store.select('stars', 'repo');
   }
 
   ngOnInit() {

@@ -27,10 +27,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponentsModule } from './components/app-components.module';
 import { schema } from './db';
 import { DBService } from './services/db.service';
+import { RepoSearchPipe } from './pipes/repo-search.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    RepoSearchPipe,
   ],
   entryComponents: [
     BindUserDialogComponent
@@ -59,6 +61,7 @@ import { DBService } from './services/db.service';
     },
     GithubService,
     DBService,
+    RepoSearchPipe,
   ],
   bootstrap: [AppComponent]
 })

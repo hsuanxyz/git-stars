@@ -6,11 +6,13 @@
             (toggleCollapsed)="toggleCollapsed()">
 </gs-toolbar>
 <gs-sidebar *ngIf="!isCollapsed"></gs-sidebar>
-<gs-stars-list [stars]="stars | async"
-               [keywords]="keywords"
-               (onDrag)="onDrag($event)"
-               (onDragEnd)="onDragEnd($event)"
-               (onDragStart)="onDragStart($event)">
+<gs-stars-list [loading]="loading$ | async">
+  <gs-stars-item *ngFor="let star of repos$ | async | repoSearch: keywords"
+                 [star]="star"
+                 [keywords]="keywords"
+                 (onDrag)="onDrag($event)"
+                 (onDragEnd)="onDragEnd($event)"
+                 (onDragStart)="onDragStart($event)"></gs-stars-item>
 </gs-stars-list>
 <gs-dnd-chip [repo]="dndRepo"></gs-dnd-chip>
 <router-outlet></router-outlet>
