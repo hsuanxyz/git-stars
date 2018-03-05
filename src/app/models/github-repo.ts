@@ -4,6 +4,7 @@ import { GithubOwner } from './github-owner';
  * Github - 库数据模型
  */
 export class GithubRepo {
+  index?: number;
   id: number;
   /**
    * 名称

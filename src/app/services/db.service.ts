@@ -61,10 +61,12 @@ export class DBService {
    */
   insertRepos(repos: GithubRepo[], username: string) {
     const data: DBGithubRepo[] = repos.map((repo, index) => {
+      const newRepo = repo;
+      newRepo.index = index;
       return {
         index,
-        repo,
         username,
+        repo: newRepo,
         id: repo.id,
         insertTime: Date.now()
       };

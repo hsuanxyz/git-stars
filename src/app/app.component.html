@@ -6,13 +6,26 @@
             (toggleCollapsed)="toggleCollapsed()">
 </gs-toolbar>
 <gs-sidebar *ngIf="!isCollapsed"></gs-sidebar>
-<gs-stars-list [loading]="loading$ | async">
-  <gs-stars-item *ngFor="let star of repos$ | async | repoSearch: keywords"
-                 [star]="star"
-                 [keywords]="keywords"
-                 (onDrag)="onDrag($event)"
-                 (onDragEnd)="onDragEnd($event)"
-                 (onDragStart)="onDragStart($event)"></gs-stars-item>
-</gs-stars-list>
+<div class="content">
+  <div class="filter-bar" *ngIf="!(loading$ | async)">
+    <mat-form-field class="filter-form">
+      <mat-select placeholder="排序" [(value)]="sort">
+        <mat-option value="star-date">最近 Star</mat-option>
+        <mat-option value="last-active">最近活跃</mat-option>
+        <mat-option value="most-stars">最多 Star</mat-option>
+        <mat-option value="most-fork">最多 Fork</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <gs-stars-list [loading]="loading$ | async">
+    <gs-stars-item *ngFor="let star of repos$ | async | repoSearch: keywords | repoSort: sort"
+                   [star]="star"
+                   [keywords]="keywords"
+                   (onDrag)="onDrag($event)"
+                   (onDragEnd)="onDragEnd($event)"
+                   (onDragStart)="onDragStart($event)"></gs-stars-item>
+  </gs-stars-list>
+</div>
+
 <gs-dnd-chip [repo]="dndRepo"></gs-dnd-chip>
 <router-outlet></router-outlet>

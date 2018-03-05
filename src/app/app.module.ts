@@ -28,11 +28,14 @@ import { AppComponentsModule } from './components/app-components.module';
 import { schema } from './db';
 import { DBService } from './services/db.service';
 import { RepoSearchPipe } from './pipes/repo-search.pipe';
+import { MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { RepoSortPipe } from "./pipes/repo-sort.pipe";
 
 @NgModule({
   declarations: [
     AppComponent,
     RepoSearchPipe,
+    RepoSortPipe,
   ],
   entryComponents: [
     BindUserDialogComponent
@@ -46,6 +49,8 @@ import { RepoSearchPipe } from './pipes/repo-search.pipe';
     LazyLoadImageModule,
     AppRoutingModule,
     AppComponentsModule,
+    MatSelectModule,
+    MatFormFieldModule,
     StoreModule.forRoot({
       stars: githubStarsReducer,
       user: githubUserReducer
@@ -62,6 +67,7 @@ import { RepoSearchPipe } from './pipes/repo-search.pipe';
     GithubService,
     DBService,
     RepoSearchPipe,
+    RepoSortPipe
   ],
   bootstrap: [AppComponent]
 })

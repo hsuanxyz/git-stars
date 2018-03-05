@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   dndRepo: GithubRepo | null = null;
   username = '';
   keywords = '';
+  sort = 'star-date';
   isCollapsed = false;
   dialogRef: MatDialogRef<BindUserDialogComponent>;
   @ViewChild(DndChipComponent) dndComponent: DndChipComponent;
@@ -91,8 +92,7 @@ export class AppComponent implements OnInit {
     });
 
     this.dialogRef.afterClosed().subscribe(result => {
-      console.log(this.username);
-      if (typeof result === 'string' && result && result.toLowerCase() !== this.username.toLowerCase()) {
+      if (typeof result === 'string') {
         this.username = result;
         this.getUser();
         this.getStars(false);
