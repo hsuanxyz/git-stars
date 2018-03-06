@@ -17,6 +17,8 @@ export class GithubOwner {
   repos_url: string;
   events_url: string;
   received_events_url: string;
-  type: string;
+  type: GithubOwnerType | string;
   site_admin: boolean;
 }
+
+export type GithubOwnerType = 'Organization' | 'User';

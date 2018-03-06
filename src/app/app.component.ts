@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
   keywords = '';
   sort = 'star-date';
   language = '#ALL';
+  repoType = '#ALL';
   languageMap: string[];
   isCollapsed = false;
   dialogRef: MatDialogRef<BindUserDialogComponent>;

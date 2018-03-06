@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -29,8 +29,9 @@ import { schema } from './db';
 import { DBService } from './services/db.service';
 import { RepoSearchPipe } from './pipes/repo-search.pipe';
 import { MatFormFieldModule, MatSelectModule } from '@angular/material';
-import { RepoSortPipe } from "./pipes/repo-sort.pipe";
-import { RepoLanguagePipe } from "./pipes/repo-language.pipe";
+import { RepoSortPipe } from './pipes/repo-sort.pipe';
+import { RepoLanguagePipe } from './pipes/repo-language.pipe';
+import { RepoTypePipe } from './pipes/repo-type.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { RepoLanguagePipe } from "./pipes/repo-language.pipe";
     RepoSearchPipe,
     RepoSortPipe,
     RepoLanguagePipe,
+    RepoTypePipe,
   ],
   entryComponents: [
     BindUserDialogComponent
@@ -70,7 +72,8 @@ import { RepoLanguagePipe } from "./pipes/repo-language.pipe";
     DBService,
     RepoSearchPipe,
     RepoSortPipe,
-    RepoLanguagePipe
+    RepoLanguagePipe,
+    RepoTypePipe
   ],
   bootstrap: [AppComponent]
 })

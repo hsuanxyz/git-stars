@@ -9,6 +9,13 @@
 <div class="content">
   <div class="filter-bar" *ngIf="!(loading$ | async)">
     <mat-form-field class="filter-form">
+      <mat-select placeholder="类型" [(value)]="repoType">
+        <mat-option value="#ALL">全部</mat-option>
+        <mat-option value="User">个人</mat-option>
+        <mat-option value="Organization">组织</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="filter-form">
       <mat-select placeholder="语言" [(value)]="language">
         <mat-option value="#ALL">全部</mat-option>
         <mat-option *ngFor="let language of languageMap" [value]="language">{{language}}</mat-option>
@@ -27,6 +34,7 @@
     <gs-stars-item *ngFor="let star of repos$ |
                             async |
                             repoSearch: keywords |
+                            repoTypeFilter: repoType |
                             repoLanguageFilter: language |
                             repoSort: sort"
                    [star]="star"
