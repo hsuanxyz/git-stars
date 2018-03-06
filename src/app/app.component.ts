@@ -33,6 +33,8 @@ export class AppComponent implements OnInit {
   username = '';
   keywords = '';
   sort = 'star-date';
+  language = '#ALL';
+  languageMap: string[];
   isCollapsed = false;
   dialogRef: MatDialogRef<BindUserDialogComponent>;
   @ViewChild(DndChipComponent) dndComponent: DndChipComponent;
@@ -65,10 +67,16 @@ export class AppComponent implements OnInit {
     });
   }
 
+  setLanguageMap(repos: GithubRepo[]) {
+    this.languageMap = Array.from(new Set(repos.map(repo => repo.language)).add('Other'))
+    .filter(language => typeof language === 'string');
+  }
+
   getStars(useLocalDB = true) {
     this.store.dispatch(new StarsLoading('loading'));
     const starsSubscriber = this.github.stars(this.username, useLocalDB).subscribe(res => {
       starsSubscriber.unsubscribe();
+      this.setLanguageMap(res);
       this.store.dispatch(new StarsLoad(res));
     });
   }

@@ -121,4 +121,5 @@ export type GithubRepoLanguage = (
   | 'ruby'
   | 'swift'
   | 'typescript'
+  | string
   );

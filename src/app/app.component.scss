@@ -17,13 +17,15 @@
 
   .filter-bar {
     width: 100%;
-    flex: 1;
+    flex: none;
     min-height: 50px;
     display: flex;
     justify-content: flex-end;
 
     .filter-form {
       width: 100px;
+      padding-left: 10px;
+      font-size: 14px;
     }
   }
 }

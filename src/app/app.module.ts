@@ -30,12 +30,14 @@ import { DBService } from './services/db.service';
 import { RepoSearchPipe } from './pipes/repo-search.pipe';
 import { MatFormFieldModule, MatSelectModule } from '@angular/material';
 import { RepoSortPipe } from "./pipes/repo-sort.pipe";
+import { RepoLanguagePipe } from "./pipes/repo-language.pipe";
 
 @NgModule({
   declarations: [
     AppComponent,
     RepoSearchPipe,
     RepoSortPipe,
+    RepoLanguagePipe,
   ],
   entryComponents: [
     BindUserDialogComponent
@@ -67,7 +69,8 @@ import { RepoSortPipe } from "./pipes/repo-sort.pipe";
     GithubService,
     DBService,
     RepoSearchPipe,
-    RepoSortPipe
+    RepoSortPipe,
+    RepoLanguagePipe
   ],
   bootstrap: [AppComponent]
 })
