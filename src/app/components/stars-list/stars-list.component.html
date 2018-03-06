@@ -2,6 +2,10 @@
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </mat-card>
 <mat-card class="stars-warp" *ngIf="!loading">
+  <div class="empty-list"
+       *ngIf="itemLength === 0">
+    没有相关储存库...
+  </div>
   <ng-content></ng-content>
 </mat-card>
 

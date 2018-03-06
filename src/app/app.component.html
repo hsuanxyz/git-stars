@@ -36,12 +36,12 @@
                             repoSearch: keywords |
                             repoTypeFilter: repoType |
                             repoLanguageFilter: language |
-                            repoSort: sort"
+                            repoSort: sort as result"
                    [star]="star"
                    [keywords]="keywords"
                    (onDrag)="onDrag($event)"
                    (onDragEnd)="onDragEnd($event)"
-                   (onDragStart)="onDragStart($event)"></gs-stars-item>
+                   (onDragStart)="onDragStart($event)" #starsItem></gs-stars-item>
   </gs-stars-list>
 </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { GithubService } from './services/github/github.service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -12,6 +12,7 @@ import { MatDialogRef } from '@angular/material/dialog/typings/dialog-ref';
 import { StarsState } from './reducers/github-stars.reducer';
 import { DBService } from './services/db.service';
 import { GithubRepo } from './models/github-repo';
+import { StarsItemComponent } from './components/stars-item/stars-item.component';
 
 interface AppState {
   stars: StarsState;
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
   isCollapsed = false;
   dialogRef: MatDialogRef<BindUserDialogComponent>;
   @ViewChild(DndChipComponent) dndComponent: DndChipComponent;
+  @ViewChildren('starsItem') starsItem: QueryList<StarsItemComponent>;
 
   constructor(
     private github: GithubService,
