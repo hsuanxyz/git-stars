@@ -6,12 +6,14 @@ import { GithubRepo } from '../models/github-repo';
  */
 @Pipe({name: 'repoSearch'})
 export class RepoSearchPipe implements PipeTransform {
-  transform(allRepos: GithubRepo[], keywords: string): GithubRepo[] {
-    const searchTerm = keywords.toLowerCase();
-    return allRepos
-    .filter(repo => {
-      const text = (repo.name + (repo.description || '')).toLowerCase();
-      return text.includes(searchTerm);
-    });
+
+  static filter(repo: GithubRepo, searchTerm: string) {
+    const term = searchTerm.toLowerCase();
+    const content = (repo.name + (repo.description || '')).toLowerCase();
+    return content.includes(term);
+  }
+
+  transform(allRepos: GithubRepo[], searchTerm: string): GithubRepo[] {
+    return allRepos.filter((repo) => RepoSearchPipe.filter(repo, searchTerm));
   }
 }
