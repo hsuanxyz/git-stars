@@ -6,15 +6,20 @@ import { GithubRepo } from '../models/github-repo';
  */
 @Pipe({name: 'repoLanguageFilter'})
 export class RepoLanguagePipe implements PipeTransform {
-  transform(allRepos: GithubRepo[], language: string): GithubRepo[] {
+
+  static filter(repo: GithubRepo, language: string) {
     if (language === '' || language === '#ALL') {
-      return allRepos;
+      return true;
     } else if (language === 'Other') {
-      return allRepos
-      .filter(repo => !repo.language);
+      return !repo.language;
     } else {
-      return allRepos
-      .filter(repo => repo.language === language);
+      return repo.language === language;
     }
   }
+
+  transform(allRepos: GithubRepo[], language: string): GithubRepo[] {
+    return allRepos.filter((repo) => RepoLanguagePipe.filter(repo, language));
+  }
+
 }
+
