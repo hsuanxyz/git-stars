@@ -6,12 +6,17 @@ import { GithubRepo } from '../models/github-repo';
  */
 @Pipe({name: 'repoTypeFilter'})
 export class RepoTypePipe implements PipeTransform {
+
+  static filter(repo: GithubRepo, type: string): boolean {
+    return repo.owner.type === type;
+  }
+
   transform(allRepos: GithubRepo[], type: string): GithubRepo[] {
     // Organization | User
     if (type === '' || type === '#ALL') {
       return allRepos;
     } else {
-      return allRepos.filter(repo => repo.owner.type === type);
+      return allRepos.filter((repo) => RepoTypePipe.filter(repo, type));
     }
   }
 }
