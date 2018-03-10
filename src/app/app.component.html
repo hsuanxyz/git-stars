@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<gs-toolbar [user]="user | async"
+<gs-toolbar [user]="user$ | async"
             (refresh)="onRefresh($event)"
             (replace)="openBindUserDialog()"
             (searchChange)="searchChange($event)"
@@ -30,6 +30,7 @@
       </mat-select>
     </mat-form-field>
   </div>
+
   <gs-stars-list [loading]="loading$ | async">
     <gs-stars-item *ngFor="let star of repos$ |
                             async |
@@ -41,7 +42,8 @@
                    [keywords]="keywords"
                    (onDrag)="onDrag($event)"
                    (onDragEnd)="onDragEnd($event)"
-                   (onDragStart)="onDragStart($event)" #starsItem></gs-stars-item>
+                   (onDragStart)="onDragStart($event)" #starsItem>
+    </gs-stars-item>
   </gs-stars-list>
 </div>
 
