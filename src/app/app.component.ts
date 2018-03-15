@@ -14,6 +14,8 @@ import { DBService } from './services/db.service';
 import { GithubRepo } from './models/github-repo';
 import { StarsItemComponent } from './components/stars-item/stars-item.component';
 
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
 interface AppState {
   stars: StarsState;
   user: GithubUser;
@@ -22,7 +24,23 @@ interface AppState {
 @Component({
   selector: 'gs-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('sidebarCollapse', [
+      state('active', style({
+        transform: 'translateX(0)',
+        width: '256px',
+        opacity: '1'
+      })),
+      state('collapsed', style({
+        transform: 'translateX(-100%)',
+        width: '0',
+        opacity: '0'
+      })),
+      transition('collapsed => active', animate('180ms cubic-bezier(0.65, 0.05, 0.36, 1)')),
+      transition('active => collapsed', animate('200ms cubic-bezier(0.65, 0.05, 0.36, 1)'))
+    ])
+  ]
 })
 export class AppComponent implements OnInit {
 

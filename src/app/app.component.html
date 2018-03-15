@@ -5,7 +5,7 @@
             (searchChange)="searchChange($event)"
             (toggleCollapsed)="toggleCollapsed()">
 </gs-toolbar>
-<gs-sidebar *ngIf="!isCollapsed"></gs-sidebar>
+<gs-sidebar [@sidebarCollapse]="isCollapsed ? 'collapsed' : 'active'"></gs-sidebar>
 <div class="content">
   <div class="filter-bar" *ngIf="!(loading$ | async)">
     <mat-form-field class="filter-form">
