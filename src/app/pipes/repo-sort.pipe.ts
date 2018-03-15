@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { GithubRepo } from '../models/github-repo';
+import { DBGithubRepoItem } from '../models/github-repo';
 import { ReposFilterSortType } from '../models/repos-filter';
 
 /**
@@ -8,7 +8,7 @@ import { ReposFilterSortType } from '../models/repos-filter';
 @Pipe({name: 'repoSort'})
 export class RepoSortPipe implements PipeTransform {
 
-  static sortCompare(a: GithubRepo, b: GithubRepo, type: ReposFilterSortType): number {
+  static sortCompare(a: DBGithubRepoItem, b: DBGithubRepoItem, type: ReposFilterSortType): number {
     switch (type) {
       case 'star-date':
         return a.index - b.index;
@@ -27,7 +27,7 @@ export class RepoSortPipe implements PipeTransform {
     }
   }
 
-  transform(allRepos: GithubRepo[], sort: ReposFilterSortType): GithubRepo[] {
+  transform(allRepos: DBGithubRepoItem[], sort: ReposFilterSortType): DBGithubRepoItem[] {
     if (sort as ReposFilterSortType) {
       return allRepos.sort((a, b) => RepoSortPipe.sortCompare(a, b, sort));
     } else {

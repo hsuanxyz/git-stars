@@ -3,7 +3,7 @@ import { Database } from '@ngrx/db';
 import { DBGithubUser, GithubUser } from '../models/github-user';
 import { map, toArray } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
-import { DBGithubRepo, GithubRepo } from '../models/github-repo';
+import { DBGithubRepo, DBGithubRepoItem, GithubRepo } from '../models/github-repo';
 import 'rxjs/add/observable/of';
 
 @Injectable()
@@ -61,12 +61,12 @@ export class DBService {
    */
   insertRepos(repos: GithubRepo[], username: string) {
     const data: DBGithubRepo[] = repos.map((repo, index) => {
-      const newRepo = repo;
-      newRepo.index = index;
+      const repoForDB: DBGithubRepoItem = repo;
+      repoForDB.index = index;
       return {
         index,
         username,
-        repo: newRepo,
+        repo: repoForDB,
         id: repo.id,
         insertTime: Date.now()
       };

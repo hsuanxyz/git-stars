@@ -4,7 +4,6 @@ import { GithubOwner } from './github-owner';
  * Github - 库数据模型
  */
 export class GithubRepo {
-  index?: number;
   id: number;
   /**
    * 名称
@@ -89,11 +88,15 @@ export class GithubRepo {
   default_branch: string;
 }
 
+export class DBGithubRepoItem extends GithubRepo {
+  index?: number;
+}
+
 /**
  * 数据库 - Github库模型
  */
 export class DBGithubRepo {
-  repo: GithubRepo;
+  repo: DBGithubRepoItem;
   username: string;
   id: number;
   insertTime: number;
