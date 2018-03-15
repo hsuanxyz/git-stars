@@ -8,15 +8,15 @@ import { GithubRepo } from '../models/github-repo';
 export class RepoTypePipe implements PipeTransform {
 
   static filter(repo: GithubRepo, type: string): boolean {
-    return repo.owner.type === type;
+    if (type === '' || type === '#ALL') {
+      return true;
+    } else {
+      return repo.owner.type === type;
+    }
   }
 
   transform(allRepos: GithubRepo[], type: string): GithubRepo[] {
     // Organization | User
-    if (type === '' || type === '#ALL') {
-      return allRepos;
-    } else {
-      return allRepos.filter((repo) => RepoTypePipe.filter(repo, type));
-    }
+    return allRepos.filter((repo) => RepoTypePipe.filter(repo, type));
   }
 }
